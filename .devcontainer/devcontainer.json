@@ -1,0 +1,57 @@
+// For format details, see https://containers.dev/implementors/json_reference/
+{
+	"name": "Spec2GCP",
+	// Build from a Dockerfile to remove stale apt sources before features install.
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/google-cloud-cli:1": {
+			"version": "latest",
+			"installTerraform": true
+		},
+		"ghcr.io/devcontainers-community/npm-features/typescript:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "none"
+		},
+		"ghcr.io/devcontainers/features/dotnet:2": {
+			"version": "9.0"
+		},
+		"ghcr.io/devcontainers-extra/features/mkdocs:2": {
+			"version": "latest",
+			"plugins": "mkdocs-material pymdown-extensions mkdocstrings[crystal,python] mkdocs-monorepo-plugin mkdocs-pdf-export-plugin mkdocs-awesome-pages-plugin mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot-chat",
+				"GoogleCloudTools.cloudcode",
+				"hashicorp.terraform",
+				"ms-dotnettools.csdevkit"
+			]
+		}
+	},
+
+	// Install APM CLI after container creation
+	"postCreateCommand": "pip install --user apm-cli && apm --version",
+
+	// Pass through GitHub and GCP tokens from local environment
+	"remoteEnv": {
+		"GITHUB_COPILOT_PAT": "${localEnv:GITHUB_COPILOT_PAT}",
+		"GITHUB_APM_PAT": "${localEnv:GITHUB_APM_PAT}",
+		"GOOGLE_CLOUD_PROJECT": "${localEnv:GOOGLE_CLOUD_PROJECT}"
+	}
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

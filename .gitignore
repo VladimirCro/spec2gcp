@@ -1,8 +1,10 @@
 
-# APM dependencies
+# APM dependencies (auto-generated, do not commit)
 apm_modules/
 **/AGENTS.md
 AGENTS.md
+**/CLAUDE.md
+CLAUDE.md
 .apm
 
 # MkDocs build output

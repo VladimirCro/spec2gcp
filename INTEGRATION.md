@@ -17,13 +17,13 @@ One-line installation from GitHub releases:
 
 ```bash
 # Full installation (agents, prompts, devcontainer, MCP)
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Minimal installation (agents and prompts only)
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
 
 # Install to specific directory
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
 ```
 
 ### Method 2: Manual Download
@@ -32,7 +32,7 @@ Download and extract manually:
 
 ```bash
 # Download latest release
-curl -L https://github.com/YOUR_ORG/spec2gcp/releases/latest/download/spec2gcp-full-latest.zip -o spec2gcp.zip
+curl -L https://github.com/VladimirCro/spec2gcp/releases/latest/download/spec2gcp-full-latest.zip -o spec2gcp.zip
 
 # Extract
 unzip spec2gcp.zip -d spec2gcp
@@ -47,7 +47,7 @@ cd spec2gcp
 
 ### Method 3: GitHub Release Download
 
-1. Visit [Releases](https://github.com/YOUR_ORG/spec2gcp/releases)
+1. Visit [Releases](https://github.com/VladimirCro/spec2gcp/releases)
 2. Download the desired package:
    - `spec2gcp-full-*.zip` - Complete package with all features
    - `spec2gcp-minimal-*.zip` - Agents and prompts only
@@ -153,7 +153,7 @@ cd my-new-project
 git init
 
 # Install spec2gcp
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Open in VS Code
 code .
@@ -169,7 +169,7 @@ Have existing code but no documentation? Use brownfield workflows:
 cd my-existing-project
 
 # Install spec2gcp
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Open in VS Code
 code .
@@ -186,7 +186,7 @@ Installing into an active project? Spec2GCP respects existing files:
 cd my-active-project
 
 # Install with merge mode (default)
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Existing .github files preserved
 # New agents/prompts added
@@ -265,9 +265,9 @@ To use spec2gcp standards:
 ```yaml
 dependencies:
   apm:
-    - source: EmeaAppGbb/spec2cloud-guidelines
-      version: latest
-  # Add your existing dependencies
+    - VladimirCro/spec2gcp-guidelines
+    - VladimirCro/spec2gcp-guidelines-backend
+    - VladimirCro/spec2gcp-guidelines-frontend
 ```
 
 Then run:
@@ -369,10 +369,7 @@ chmod +x scripts/install.sh
 **Solution**: Install APM
 ```bash
 # Install APM
-pip install git+https://github.com/danielmeppiel/apm.git
-
-# Or follow instructions at:
-# https://github.com/danielmeppiel/apm
+pip install apm-cli
 ```
 
 ### Issue: Prompts Not Working
@@ -419,7 +416,7 @@ To update to a newer version:
 
 ```bash
 # Re-run quick install with desired version
-curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.1.0
+curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.1.0
 
 # Or download and run installer with --force
 ./scripts/install.sh --full --force
@@ -479,7 +476,7 @@ find . -name "*.spec2gcp" -delete
 
 - **Main Documentation**: [README.md](README.md)
 - **Workflow Guide**: [SPEC2GCP.md](SPEC2GCP.md)
-- **GitHub Repository**: https://github.com/YOUR_ORG/spec2gcp
+- **GitHub Repository**: https://github.com/VladimirCro/spec2gcp
 - **APM Documentation**: https://github.com/danielmeppiel/apm
 - **GitHub Copilot**: https://github.com/features/copilot
 

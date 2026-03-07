@@ -18,7 +18,7 @@ Before you begin, ensure you have:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_ORG/spec2gcp.git
+git clone https://github.com/VladimirCro/spec2gcp.git
 cd spec2gcp
 ```
 

@@ -5,7 +5,7 @@
 
 set -e
 
-REPO="YOUR_ORG/spec2gcp"
+REPO="VladimirCro/spec2gcp"
 VERSION="latest"
 MODE="full"
 TARGET_DIR="."
@@ -76,7 +76,7 @@ parse_args() {
         cat << EOF
 Spec2GCP Quick Install Script
 
-Usage: curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- [OPTIONS]
+Usage: curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- [OPTIONS]
 
 OPTIONS:
   --minimal           Install minimal package (agents and prompts only)
@@ -86,16 +86,16 @@ OPTIONS:
 
 EXAMPLES:
   # Default installation (full package, latest version)
-  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
 
   # Minimal installation
-  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
+  curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
 
   # Specific version
-  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.0.0
+  curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.0.0
 
   # Custom directory
-  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
+  curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
 
 EOF
         exit 0

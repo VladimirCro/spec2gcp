@@ -196,7 +196,7 @@ install_apm_config() {
         log_info "Running apm install..."
         (cd "$TARGET_DIR" && apm install) || log_warning "apm install failed. Run manually later."
       else
-        log_info "APM not found. Install from: https://github.com/danielmeppiel/apm"
+        log_info "APM not found. Install with: pip install apm-cli"
       fi
     fi
   fi
@@ -233,7 +233,7 @@ print_next_steps() {
   echo "     • /rev-eng   - Reverse engineer codebase into specs"
   echo "     • /modernize - Create modernization plan"
   echo
-  echo -e "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2gcp"
+  echo -e "3. ${BOLD}Learn more:${NC} https://github.com/VladimirCro/spec2gcp"
   echo
   
   if [ -f "$TARGET_DIR/.vscode/mcp.json.spec2gcp" ] || [ -f "$TARGET_DIR/.devcontainer/devcontainer.json.spec2gcp" ]; then

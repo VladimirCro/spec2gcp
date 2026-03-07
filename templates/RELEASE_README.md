@@ -226,7 +226,7 @@ chmod +x scripts/install.sh
 ## 📚 Learn More
 
 - **Integration Guide**: See `INTEGRATION.md` for detailed setup instructions
-- **GitHub Repository**: https://github.com/YOUR_ORG/spec2gcp
+- **GitHub Repository**: https://github.com/VladimirCro/spec2gcp
 - **APM Documentation**: https://github.com/danielmeppiel/apm
 
 ## 🆘 Support

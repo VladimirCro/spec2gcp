@@ -148,7 +148,7 @@ jobs:
           
           ## Learn More
           
-          https://github.com/EmeaAppGbb/spec2gcp
+          https://github.com/VladimirCro/spec2gcp
           EOF
           
           cp LICENSE.md release-minimal/
@@ -193,7 +193,7 @@ jobs:
             **Full Installation** (Recommended)
             Includes agents, prompts, devcontainer, MCP servers, and installation scripts:
             ```bash
-            curl -L https://github.com/EmeaAppGbb/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp.zip
+            curl -L https://github.com/VladimirCro/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp.zip
             unzip spec2gcp.zip -d spec2gcp
             cd spec2gcp
             ./scripts/install.sh --full
@@ -202,14 +202,14 @@ jobs:
             **Minimal Installation**
             Includes only agents and prompts:
             ```bash
-            curl -L https://github.com/EmeaAppGbb/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp-minimal.zip
+            curl -L https://github.com/VladimirCro/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp-minimal.zip
             unzip spec2gcp-minimal.zip -d spec2gcp-minimal
             cp -r spec2gcp-minimal/.github /path/to/your/project/
             ```
             
             **Quick Install** (One-liner)
             ```bash
-            curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2gcp/main/scripts/quick-install.sh | bash
+            curl -fsSL https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/scripts/quick-install.sh | bash
             ```
             
             ### 📋 What's Included
@@ -236,13 +236,13 @@ jobs:
             
             ### 📖 Documentation
             
-            - [Integration Guide](https://github.com/EmeaAppGbb/spec2gcp/blob/main/INTEGRATION.md)
-            - [Full Documentation](https://github.com/EmeaAppGbb/spec2gcp)
-            - [Workflow Guide](https://github.com/EmeaAppGbb/spec2gcp/blob/main/SPEC2GCP.md)
+            - [Integration Guide](https://github.com/VladimirCro/spec2gcp/blob/main/INTEGRATION.md)
+            - [Full Documentation](https://github.com/VladimirCro/spec2gcp)
+            - [Workflow Guide](https://github.com/VladimirCro/spec2gcp/blob/main/SPEC2GCP.md)
             
             ### 🆕 What's New
             
-            See the [CHANGELOG](https://github.com/EmeaAppGbb/spec2gcp/blob/main/CHANGELOG.md) for details.
+            See the [CHANGELOG](https://github.com/VladimirCro/spec2gcp/blob/main/CHANGELOG.md) for details.
           files: |
             spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip
             spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip

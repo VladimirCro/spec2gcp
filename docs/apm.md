@@ -10,8 +10,11 @@ This repository uses **[APM (Agent Package Manager)](https://github.com/danielme
 
 ## Built-in standards
 
-By default, spec2gcp includes:
-- **spec2cloud-guidelines** - General engineering, documentation, agent-first patterns, CI/CD, security
+By default, spec2gcp includes three packages:
+
+- **[spec2gcp-guidelines](https://github.com/VladimirCro/spec2gcp-guidelines)** - General engineering, documentation, agent-first patterns, CI/CD, security
+- **[spec2gcp-guidelines-backend](https://github.com/VladimirCro/spec2gcp-guidelines-backend)** - Backend standards (Python and .NET)
+- **[spec2gcp-guidelines-frontend](https://github.com/VladimirCro/spec2gcp-guidelines-frontend)** - Frontend standards (React/Next.js)
 
 ## Adding more standards
 
@@ -20,9 +23,10 @@ Edit `apm.yml` to add technology-specific standards:
 ```yaml
 dependencies:
   apm:
-    - EmeaAppGbb/spec2cloud-guidelines@latest
-    - EmeaAppGbb/python-backend@1.0.0  # Add Python backend rules
-    - EmeaAppGbb/react-frontend@1.0.0  # Add React frontend rules
+    - VladimirCro/spec2gcp-guidelines
+    - VladimirCro/spec2gcp-guidelines-backend
+    - VladimirCro/spec2gcp-guidelines-frontend
+    - your-org/your-custom-standards  # Add your own standards
 ```
 
 Then run:
@@ -65,7 +69,7 @@ apm install your-org/private-standards
 apm update
 
 # Update specific package
-apm update EmeaAppGbb/spec2cloud-guidelines
+apm update VladimirCro/spec2gcp-guidelines
 
 # Regenerate AGENTS.md after updates
 apm compile

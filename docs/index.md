@@ -2,7 +2,7 @@
 
 This folder holds the long-form documentation that used to live in the root README.
 
-- Start here: if you’re new, read the root [README](../README.md) first.
+- Start here: if you’re new, read the root [README](https://github.com/VladimirCro/spec2gcp#readme) first.
 
 ## Topics
 
@@ -16,4 +16,4 @@ This folder holds the long-form documentation that used to live in the root READ
 
 ## Related guides
 
-- [Integration & installation guide](../INTEGRATION.md)
+- [Integration & installation guide](https://github.com/VladimirCro/spec2gcp/blob/main/INTEGRATION.md)

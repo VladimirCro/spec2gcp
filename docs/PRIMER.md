@@ -385,7 +385,7 @@ The fastest way — everything pre-installed:
 
 ## Learn More
 
-- [INTEGRATION.md](../INTEGRATION.md) — How to integrate spec2gcp into existing projects
+- [INTEGRATION.md](https://github.com/VladimirCro/spec2gcp/blob/main/INTEGRATION.md) — How to integrate spec2gcp into existing projects
 - [getting-started.md](getting-started.md) — Step-by-step setup guide
 - [workflows.md](workflows.md) — Detailed workflow documentation
 - [APM docs](apm.md) — Agent Package Manager for engineering standards

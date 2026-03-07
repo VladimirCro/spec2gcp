@@ -1,6 +1,12 @@
 # Managing standards with APM
 
-This repository uses **[APM (Agent Package Manager)](https://github.com/danielmeppiel/apm)** for managing engineering standards. APM provides:
+This repository uses **[APM (Agent Package Manager)](https://github.com/danielmeppiel/apm)** for managing engineering standards. Install it with:
+
+```bash
+pip install apm-cli
+```
+
+APM provides:
 
 - ✅ **Zero-config setup** - `apm install` reads `apm.yml` and installs all dependencies
 - ✅ **Semantic versioning** - Lock to specific versions or use latest

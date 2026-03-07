@@ -88,4 +88,4 @@ Once inside VS Code with GitHub Copilot:
 
 - Learn about the [Benefits](benefits.md) of Spec2GCP
 - Read the full [Workflow Guide](workflows.md)
-- Check the [SPEC2GCP.md](../SPEC2GCP.md) template metadata
+- Check the [SPEC2GCP.md](https://github.com/VladimirCro/spec2gcp/blob/main/SPEC2GCP.md) template metadata

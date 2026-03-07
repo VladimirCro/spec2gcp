@@ -1,10 +1,10 @@
 lockfile_version: '1'
-generated_at: '2026-03-07T12:01:13.834277+00:00'
+generated_at: '2026-03-07T12:33:53.274956+00:00'
 apm_version: 0.7.4
 dependencies:
 - repo_url: VladimirCro/spec2gcp-guidelines
   host: github.com
-  resolved_commit: 0e0123c07724447a243d39376f6ab06e67a065c2
+  resolved_commit: 420143c8beca01517452e14bf7cc5e6c32c1e291
 - repo_url: VladimirCro/spec2gcp-guidelines-backend
   host: github.com
   resolved_commit: 512d55e26b6f9a28b07ce4981a1c72b464dc87bd

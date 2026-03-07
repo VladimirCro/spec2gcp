@@ -10,7 +10,7 @@ handoffs:
     send: false
 name: tech-analyst
 description: Reverse engineers and analyzes existing codebases to extract specifications, create feature documentation, and generate comprehensive technical documentation.
-tools: ['edit', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'azure-mcp/search', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'todo', 'agent', 'context7/*', 'deepwiki/*', 'microsoft.docs.mcp/*']
+tools: ['edit', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'todo', 'agent', 'context7/*', 'deepwiki/*']
 model: Claude Opus 4.6 (copilot)
 ---
 # Reverse Engineering Technical Analyst Agent Instructions

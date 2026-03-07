@@ -21,7 +21,7 @@ Create ADRs when significant architectural decisions need to be documented, incl
 - Security and compliance measures
 - Caching strategies
 - Messaging patterns
-- Cloud service selections (Azure services)
+- Cloud service selections (GCP services)
 
 ## Input Sources
 
@@ -154,8 +154,8 @@ Before creating ADRs, use your tools to research best practices:
 
 1. **Context7** - Research library documentation and patterns
 2. **DeepWiki** - Analyze reference implementations in similar projects
-3. **Microsoft Docs MCP** - Get official Microsoft/Azure best practices
-4. **Azure MCP** - Research Azure-specific architectural patterns
+3. **Developer Knowledge MCP** - Get official Google Cloud best practices
+4. **gcloud MCP** - Research GCP-specific architectural patterns
 
 ## Quality Guidelines
 

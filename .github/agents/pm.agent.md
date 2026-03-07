@@ -1,7 +1,7 @@
 ---
 name: pm
 description: Synthesizes stakeholder input into a clear, evolving Product Requirements Document (PRD) that aligns business goals with user needs.
-tools: ['edit', 'search', 'vscode/runCommand', 'execute/runInTerminal', 'execute/createAndRunTask', 'azure-mcp/search', 'agent', 'search/usages', 'read/problems', 'search/changes', 'vscode/openSimpleBrowser', 'web/fetch', 'todo', 'execute/runTests', 'vscode/getProjectSetupInfo','vscode/newWorkspace']
+tools: ['edit', 'search', 'vscode/runCommand', 'execute/runInTerminal', 'execute/createAndRunTask', 'agent', 'search/usages', 'read/problems', 'search/changes', 'vscode/openSimpleBrowser', 'web/fetch', 'todo', 'execute/runTests', 'vscode/getProjectSetupInfo','vscode/newWorkspace']
 
 model: Claude Opus 4.6 (copilot)
 handoffs: 
@@ -83,6 +83,6 @@ You must **NEVER** include:
 
 ✅ **Good (WHAT):** "Users must be able to authenticate using their corporate credentials."
 
-❌ **Bad (HOW):** "Implement OAuth 2.0 using MSAL library with Azure AD B2C integration."
+❌ **Bad (HOW):** "Implement OAuth 2.0 using Google Identity Platform with Firebase Authentication."
 
 Your output should be clear, strategic, and accessible to both business and technical stakeholders. Leave all technical decisions and implementation details to the development team.

@@ -22,7 +22,7 @@ When breaking down features, your responsibilities include:
 - Backend scaffolding (API project structure, service configuration, middleware setup)
 - Frontend scaffolding (Next.js app structure, components architecture, state management setup)
 - Documentation scaffolding (MkDocs structure, API documentation setup)
-- Infrastructure scaffolding (Aspire configuration, deployment manifests)
+- Infrastructure scaffolding (Terraform modules, Cloud Run configuration, deployment manifests)
 
 **Scaffolding tasks MUST be completed before any feature work begins.**
 

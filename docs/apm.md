@@ -5,13 +5,13 @@ This repository uses **[APM (Agent Package Manager)](https://github.com/danielme
 - ✅ **Zero-config setup** - `apm install` reads `apm.yml` and installs all dependencies
 - ✅ **Semantic versioning** - Lock to specific versions or use latest
 - ✅ **Automatic AGENTS.md** - `apm compile` generates guardrails from all packages
-- ✅ **Mix any standards** - Combine Microsoft, community, and custom packages
+- ✅ **Mix any standards** - Combine Google, community, and custom packages
 - ✅ **One-command updates** - `apm update` to get latest standards
 
 ## Built-in standards
 
-By default, spec2cloud includes:
-- **azure-standards** - General engineering, documentation, agent-first patterns, CI/CD, security
+By default, spec2gcp includes:
+- **spec2cloud-guidelines** - General engineering, documentation, agent-first patterns, CI/CD, security
 
 ## Adding more standards
 
@@ -20,7 +20,7 @@ Edit `apm.yml` to add technology-specific standards:
 ```yaml
 dependencies:
   apm:
-    - EmeaAppGbb/azure-standards@1.0.0
+    - EmeaAppGbb/spec2cloud-guidelines@latest
     - EmeaAppGbb/python-backend@1.0.0  # Add Python backend rules
     - EmeaAppGbb/react-frontend@1.0.0  # Add React frontend rules
 ```
@@ -65,7 +65,7 @@ apm install your-org/private-standards
 apm update
 
 # Update specific package
-apm update danielmeppiel/azure-standards
+apm update EmeaAppGbb/spec2cloud-guidelines
 
 # Regenerate AGENTS.md after updates
 apm compile

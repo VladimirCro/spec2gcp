@@ -1,4 +1,4 @@
-# Spec2Cloud Documentation
+# Spec2GCP Documentation
 
 This folder holds the long-form documentation that used to live in the root README.
 

@@ -2,15 +2,15 @@ name: spec2gcp
 version: 1.0.0
 description: AI-powered Google Cloud development workflow - from spec to cloud
 
-author: YOUR_GITHUB_USERNAME
+author: VladimirCro
 license: MIT
 
 # APM dependencies replace git subtrees
 dependencies:
   apm:
-    - EmeaAppGbb/spec2cloud-guidelines
-    - EmeaAppGbb/spec2cloud-guidelines-backend
-    - EmeaAppGbb/spec2cloud-guidelines-frontend
+    - VladimirCro/spec2gcp-guidelines
+    - VladimirCro/spec2gcp-guidelines-backend
+    - VladimirCro/spec2gcp-guidelines-frontend
 
 
 

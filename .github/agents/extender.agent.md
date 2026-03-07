@@ -1,7 +1,7 @@
 ---
 description: Gathers user requirements for new features, creates FRDs in specs/features/, and develops extension strategies to integrate new capabilities with existing systems while preserving stability.
-tools: ['runCommands', 'runTasks', 'context7/*', 'deepwiki/*', 'microsoft.docs.mcp/*', 'Azure MCP/azd', 'Azure MCP/cloudarchitect', 'Azure MCP/documentation', 'Azure MCP/extension_azqr', 'Azure MCP/extension_cli_generate', 'Azure MCP/extension_cli_install', 'Azure MCP/get_bestpractices', 'edit', 'runNotebooks', 'search', 'new', 'extensions', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags', 'ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_ai_model_guidance', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_model_code_sample', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_tracing_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_evaluation_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_agent_runner_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_planner', 'todos', 'runTests', 'runSubagent', 'usages', 'vscodeAPI', 'problems', 'changes', 'testFailure', 'openSimpleBrowser', 'fetch', 'githubRepo']
-model: Claude Sonnet 4.5 (copilot)
+tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'vscode/extensions', 'todo', 'execute/runTests', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo']
+model: Claude Opus 4.6 (copilot)
 handoffs:
   - label: Create Implementation Plan (/plan)
     agent: dev
@@ -15,8 +15,8 @@ handoffs:
     agent: dev
     prompt: file:.github/prompts/delegate.prompt.md
     send: false
-  - label: Deploy to Azure (/deploy)
-    agent: azure
+  - label: Deploy to Google Cloud (/deploy)
+    agent: gcloud
     prompt: file:.github/prompts/deploy.prompt.md
     send: false
 name: extender

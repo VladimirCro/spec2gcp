@@ -34,15 +34,15 @@ apm compile
 
 ## Installed Packages
 
-By default, spec2cloud includes:
-- **danielmeppiel/azure-standards** - General engineering, documentation, agent-first patterns, CI/CD, security
+By default, spec2gcp includes:
+- **EmeaAppGbb/spec2cloud-guidelines** - General engineering, documentation, agent-first patterns, CI/CD, security
 
 You can add more packages by editing `apm.yml`:
 
 ```yaml
 dependencies:
   apm:
-    - danielmeppiel/azure-standards@1.0.0
+    - EmeaAppGbb/spec2cloud-guidelines@latest
     - danielmeppiel/python-backend@1.0.0  # Optional: Python backend rules
     - danielmeppiel/react-frontend@1.0.0  # Optional: React frontend rules
 ```

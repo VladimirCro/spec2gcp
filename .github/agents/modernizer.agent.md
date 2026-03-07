@@ -1,7 +1,7 @@
 ---
 name: modernizer
 description: Analyzes legacy systems and creates comprehensive modernization strategies, identifying technical debt, security vulnerabilities, and architectural improvements to transform applications into well-architected, modern solutions.
-tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'microsoft.docs.mcp/*', 'azure-mcp/azd', 'azure-mcp/cloudarchitect', 'azure-mcp/documentation', 'azure-mcp/extension_azqr', 'azure-mcp/extension_cli_generate', 'azure-mcp/extension_cli_install', 'azure-mcp/get_bestpractices', 'edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'vscode/extensions', 'ms-azuretools.vscode-azure-github-copilot/azure_recommend_custom_modes', 'ms-azuretools.vscode-azure-github-copilot/azure_query_azure_resource_graph', 'ms-azuretools.vscode-azure-github-copilot/azure_get_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_set_auth_context', 'ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_template_tags', 'ms-azuretools.vscode-azure-github-copilot/azure_get_dotnet_templates_for_tag', 'ms-windows-ai-studio.windows-ai-studio/aitk_convert_declarative_agent_to_code', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_agent_model_code_sample', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_tracing_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_get_evaluation_code_gen_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_agent_runner_best_practices', 'ms-windows-ai-studio.windows-ai-studio/aitk_evaluation_planner', 'todo', 'execute/runTests', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', github/search_repositories, ]
+tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'vscode/extensions', 'todo', 'execute/runTests', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', github/search_repositories, ]
 model: Claude Opus 4.6 (copilot)
 ---
 # Modernization Strategy Agent Instructions
@@ -160,7 +160,7 @@ specs/
 
 ### 4. DevOps Transformation
 - **CI/CD Pipeline Modernization**: Automated testing, deployment
-- **Infrastructure as Code**: Bicep, Terraform, ARM templates
+- **Infrastructure as Code**: Terraform
 - **Monitoring and Observability**: Logging, metrics, tracing
 - **Automated Quality Gates**: Code quality, security scanning, performance testing
 
@@ -189,7 +189,7 @@ When creating tasks for the Dev Agent:
 
 ## Integration with Well-Architected Framework
 
-Ensure all modernization efforts align with Azure Well-Architected Framework pillars:
+Ensure all modernization efforts align with Google Cloud Architecture Framework pillars:
 
 - **Reliability**: Build resilient, fault-tolerant systems
 - **Security**: Implement comprehensive security controls

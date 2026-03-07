@@ -176,7 +176,7 @@ User Request → Agent 1 (foundational work) → Agent 2 (builds on Agent 1) →
    - pm → devlead → architect → dev (with `/plan` then `/implement`)
    
 2. **Deployment Pipeline**:
-   - architect → azure → dev (validation)
+   - architect → gcloud → dev (validation)
    
 3. **Legacy System Modernization**:
    - tech-analyst → modernizer → dev (with `/plan` then `/implement`)
@@ -236,7 +236,7 @@ Provide a clear summary:
 **User says**: "Should we use Cosmos DB or SQL Database for this project?"
 **Classification**: Architecture decision
 **Delegate to**: `architect` agent
-**Instruction**: "Create an ADR comparing Cosmos DB and Azure SQL Database for [specific project context]. Research both options, evaluate trade-offs, and provide a recommendation."
+**Instruction**: "Create an ADR comparing Cloud Spanner and Cloud SQL for [specific project context]. Research both options, evaluate trade-offs, and provide a recommendation."
 
 ### Planning Intent
 **User says**: "Create an implementation plan for the authentication feature"
@@ -251,10 +251,10 @@ Provide a clear summary:
 **Instruction**: "Implement a login page using Next.js based on the authentication FRD in specs/features/authentication.md. Follow the project's frontend guidelines in AGENTS.md."
 
 ### Deployment Intent
-**User says**: "Deploy this application to Azure using best practices"
-**Classification**: Azure deployment
+**User says**: "Deploy this application to Google Cloud using best practices"
+**Classification**: GCP deployment
 **Delegate to**: `gcloud` agent
-**Instruction**: "Analyze the codebase and deploy it to Azure following best practices. Use Azure Dev CLI (azd) and create Bicep templates for infrastructure as code."
+**Instruction**: "Analyze the codebase and deploy it to Google Cloud following best practices. Use gcloud CLI and create Terraform configurations for infrastructure as code."
 
 ### Analysis Intent
 **User says**: "Analyze this existing codebase and document the features"
@@ -275,10 +275,10 @@ Provide a clear summary:
 **Response**: Show numbered list of agents/prompts with descriptions, prompt user to select by number
 
 ### Fetch Intent
-**User says**: "Fetch all agents from the spec2cloud repo"
+**User says**: "Fetch all agents from the spec2gcp repo"
 **Classification**: Agent/prompt synchronization
 **Action**: Use `fetch` tool to download from `https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/.github/agents/` and save to local `.github/agents/`
-**Response**: "I've fetched 9 agent files from the spec2cloud repository to .github/agents/"
+**Response**: "I've fetched 9 agent files from the spec2gcp repository to .github/agents/"
 
 ## Multi-Agent Orchestration Patterns
 
@@ -296,11 +296,11 @@ Provide a clear summary:
 
 **Report to user**: "I've orchestrated the complete authentication feature workflow across 4 specialized agents: PM created the requirements, Dev Lead validated them, Architect made key decisions, and Developer created the task breakdown and implemented the code. The feature is now ready."
 
-### Pattern 2: Azure Deployment
+### Pattern 2: GCP Deployment
 **User Request**: "Deploy to Google Cloud with CI/CD"
 
 **Orchestration**:
-1. Delegate to **architect**: "Review the deployment architecture and create an ADR for Azure service selection."
+1. Delegate to **architect**: "Review the deployment architecture and create an ADR for GCP service selection."
 2. Delegate to **gcloud**: "Deploy the application to Google Cloud using gcloud CLI. Create Terraform configurations and GitHub Actions workflows."
 3. Delegate to **dev**: "Verify the deployment and ensure the application works correctly in Google Cloud."
 
@@ -321,7 +321,7 @@ User Request
     │   └─ YES → Show resource catalog, let user pick items to fetch
     │
     ├─ Mentions "fetch agents", "fetch prompts", "sync agents", "download agents"?
-    │   └─ YES → Execute fetch workflow (see "Spec2Cloud Resource Catalog" section)
+    │   └─ YES → Execute fetch workflow (see "Spec2GCP Resource Catalog" section)
     │
     ├─ Mentions "requirements", "PRD", "feature spec"?
     │   └─ YES → pm agent
@@ -414,18 +414,18 @@ The payment processing feature has been fully implemented with PCI compliance co
 - Are you looking to improve the **requirements/specifications** (PM agent)?
 - Do you want to improve the **architecture or technical decisions** (Architect agent)?
 - Are you interested in **code quality or implementation** (Developer agent)?
-- Would you like to improve the **Azure infrastructure or deployment** (Azure agent)?
+- Would you like to improve the **GCP infrastructure or deployment** (gcloud agent)?
 - Or are you looking to **modernize/refactor existing code** (Modernizer agent)?
 
 Please provide more details about what aspect you'd like to improve."
 
-## Spec2Cloud Resource Catalog
+## Spec2GCP Resource Catalog
 
 You can browse and fetch Copilot agents and prompts from the spec2gcp repository.
 
 ### Intent Keywords
-- **List/Browse**: "list agents", "show agents", "show prompts", "list available", "what agents are available", "browse spec2cloud", "show catalog"
-- **Fetch**: "fetch agents", "fetch prompts", "download agents", "sync agents", "get spec2cloud agents", "install agents"
+- **List/Browse**: "list agents", "show agents", "show prompts", "list available", "what agents are available", "browse spec2gcp", "show catalog"
+- **Fetch**: "fetch agents", "fetch prompts", "download agents", "sync agents", "get spec2gcp agents", "install agents"
 
 ---
 
@@ -443,7 +443,7 @@ When a user asks to **list**, **show**, or **browse** available resources, displ
 | 4 | **devlead** | `devlead.agent.md` | Reviews PRDs/FRDs for technical feasibility, validates completeness, identifies missing requirements |
 | 5 | **modernizer** | `modernizer.agent.md` | Analyzes legacy systems, creates modernization strategies, identifies technical debt and security issues |
 | 6 | **pm** | `pm.agent.md` | Product Manager - creates PRDs and FRDs, defines requirements, user personas, success metrics |
-| 7 | **spec2cloud** | `spec2cloud.agent.md` | Main orchestrator agent that coordinates all other agents |
+| 7 | **spec2gcp** | `spec2gcp.agent.md` | Main orchestrator agent that coordinates all other agents |
 | 8 | **tech-analyst** | `tech-analyst.agent.md` | Reverse engineers existing codebases, extracts specifications, creates technical documentation |
 
 #### 📝 PROMPTS (`.github/prompts/`)
@@ -452,7 +452,7 @@ When a user asks to **list**, **show**, or **browse** available resources, displ
 |---|--------|------|-------------|
 | 1 | **adr** | `adr.prompt.md` | Template for creating Architecture Decision Records |
 | 2 | **delegate** | `delegate.prompt.md` | Template for delegating tasks between agents |
-| 3 | **deploy** | `deploy.prompt.md` | Deployment workflow and Azure deployment guidance |
+| 3 | **deploy** | `deploy.prompt.md` | Deployment workflow and GCP deployment guidance |
 | 4 | **frd** | `frd.prompt.md` | Feature Requirements Document template |
 | 5 | **generate-agents** | `generate-agents.prompt.md` | Template for generating new agent definitions |
 | 6 | **implement** | `implement.prompt.md` | Implementation guidance and coding standards |
@@ -489,17 +489,17 @@ Present options like:
 
 **Response**:
 ```
-Here are the available agents from the spec2cloud repository:
+Here are the available agents from the spec2gcp repository:
 
 | # | Agent | Description |
 |---|-------|-------------|
 | 1 | architect | Creates ADRs, makes technology choices |
-| 2 | azure | Azure deployment specialist |
+| 2 | gcloud | GCP deployment specialist |
 | 3 | dev | Developer for implementation |
 | 4 | devlead | Reviews requirements for technical feasibility |
 | 5 | modernizer | Legacy modernization strategist |
 | 6 | pm | Product Manager for PRDs/FRDs |
-| 7 | spec2cloud | Main orchestrator agent |
+| 7 | spec2gcp | Main orchestrator agent |
 | 8 | tech-analyst | Reverse engineering analyst |
 
 Which agents would you like to fetch? 
@@ -524,7 +524,7 @@ Shall I fetch these 3 agents to .github/agents/? (yes/no)
 **Response**: Display the prompts table, then ask which ones to fetch.
 
 #### Example 3: Fetch Specific by Name
-**User**: "Fetch the azure agent and deploy prompt"
+**User**: "Fetch the gcloud agent and deploy prompt"
 
 **Action**: Fetch those specific files without showing the full catalog.
 

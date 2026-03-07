@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Spec2Cloud Quick Install Script
+# Spec2GCP Quick Install Script
 # One-liner installation from GitHub releases
 
 set -e
 
-REPO="EmeaAppGbb/spec2cloud"
+REPO="YOUR_ORG/spec2gcp"
 VERSION="latest"
 MODE="full"
 TARGET_DIR="."
@@ -33,7 +33,7 @@ log_error() {
 print_header() {
   echo -e "${BLUE}${BOLD}"
   echo "╔═══════════════════════════════════════════════════════════╗"
-  echo "║              Spec2Cloud Quick Installer                   ║"
+  echo "║               Spec2GCP Quick Installer                    ║"
   echo "╚═══════════════════════════════════════════════════════════╝"
   echo -e "${NC}"
 }
@@ -74,9 +74,9 @@ parse_args() {
         ;;
       --help)
         cat << EOF
-Spec2Cloud Quick Install Script
+Spec2GCP Quick Install Script
 
-Usage: curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- [OPTIONS]
+Usage: curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- [OPTIONS]
 
 OPTIONS:
   --minimal           Install minimal package (agents and prompts only)
@@ -86,16 +86,16 @@ OPTIONS:
 
 EXAMPLES:
   # Default installation (full package, latest version)
-  curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
 
   # Minimal installation
-  curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --minimal
+  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
 
   # Specific version
-  curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --version v1.0.0
+  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.0.0
 
   # Custom directory
-  curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
+  curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
 
 EOF
         exit 0
@@ -110,7 +110,7 @@ EOF
 }
 
 get_download_url() {
-  local package_name="spec2cloud-${MODE}"
+  local package_name="spec2gcp-${MODE}"
   
   if [ "$VERSION" = "latest" ]; then
     echo "https://github.com/${REPO}/releases/latest/download/${package_name}-latest.zip"
@@ -122,9 +122,9 @@ get_download_url() {
 download_and_install() {
   local download_url=$(get_download_url)
   local temp_dir=$(mktemp -d)
-  local zip_file="${temp_dir}/spec2cloud.zip"
+  local zip_file="${temp_dir}/spec2gcp.zip"
   
-  log_info "Downloading spec2cloud $MODE package ($VERSION)..."
+  log_info "Downloading spec2gcp $MODE package ($VERSION)..."
   
   if ! curl -fsSL "$download_url" -o "$zip_file"; then
     log_error "Failed to download from: $download_url"
@@ -137,27 +137,27 @@ download_and_install() {
   log_success "Downloaded successfully"
   
   log_info "Extracting package..."
-  unzip -q "$zip_file" -d "$temp_dir/spec2cloud"
+  unzip -q "$zip_file" -d "$temp_dir/spec2gcp"
   log_success "Extracted successfully"
   
   log_info "Installing to: $TARGET_DIR"
   
-  if [ -f "$temp_dir/spec2cloud/scripts/install.sh" ]; then
+  if [ -f "$temp_dir/spec2gcp/scripts/install.sh" ]; then
     # Run the installer from the package
-    chmod +x "$temp_dir/spec2cloud/scripts/install.sh"
+    chmod +x "$temp_dir/spec2gcp/scripts/install.sh"
     
     if [ "$MODE" = "minimal" ]; then
-      "$temp_dir/spec2cloud/scripts/install.sh" --agents-only "$TARGET_DIR"
+      "$temp_dir/spec2gcp/scripts/install.sh" --agents-only "$TARGET_DIR"
     else
-      "$temp_dir/spec2cloud/scripts/install.sh" --full "$TARGET_DIR"
+      "$temp_dir/spec2gcp/scripts/install.sh" --full "$TARGET_DIR"
     fi
   else
     # Fallback: manual copy for minimal package
     log_info "Copying files..."
     
-    if [ -d "$temp_dir/spec2cloud/.github" ]; then
+    if [ -d "$temp_dir/spec2gcp/.github" ]; then
       mkdir -p "$TARGET_DIR/.github"
-      cp -r "$temp_dir/spec2cloud/.github/"* "$TARGET_DIR/.github/"
+      cp -r "$temp_dir/spec2gcp/.github/"* "$TARGET_DIR/.github/"
       log_success "Installation complete"
     else
       log_error "Package structure is invalid"
@@ -185,7 +185,7 @@ check_dependencies
 download_and_install
 
 echo
-log_success "Spec2Cloud installation complete!"
+log_success "Spec2GCP installation complete!"
 echo
 echo "Next steps:"
 echo "1. Open your project in VS Code with GitHub Copilot"

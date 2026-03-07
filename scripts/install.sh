@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Spec2Cloud Installation Script
-# Installs spec2cloud agents, prompts, and configurations into existing projects
+# Spec2GCP Installation Script
+# Installs spec2gcp agents, prompts, and configurations into existing projects
 
 set -e
 
@@ -36,7 +36,7 @@ PACKAGE_ROOT="$(dirname "$SCRIPT_DIR")"
 print_header() {
   echo -e "${BLUE}${BOLD}"
   echo "╔═══════════════════════════════════════════════════════════╗"
-  echo "║                    Spec2Cloud Installer                   ║"
+  echo "║                    Spec2GCP Installer                   ║"
   echo "║            AI-Powered Development Workflows               ║"
   echo "╚═══════════════════════════════════════════════════════════╝"
   echo -e "${NC}"
@@ -46,7 +46,7 @@ print_usage() {
   cat << EOF
 Usage: $0 [OPTIONS] [TARGET_DIR]
 
-Install spec2cloud into an existing project.
+Install spec2gcp into an existing project.
 
 OPTIONS:
   --full              Install everything (agents, prompts, devcontainer, MCP)
@@ -93,7 +93,7 @@ log_error() {
 
 check_git_repo() {
   if [ ! -d "$TARGET_DIR/.git" ]; then
-    log_warning "Not a git repository. Spec2cloud works best with git."
+    log_warning "Not a git repository. Spec2GCP works best with git."
     read -p "Continue anyway? (y/N) " -n 1 -r
     echo
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -104,7 +104,7 @@ check_git_repo() {
 
 check_existing_installation() {
   if [ -d "$TARGET_DIR/.github/agents" ] && [ "$FORCE" = false ]; then
-    log_warning "Spec2cloud agents already exist in this project."
+    log_warning "Spec2GCP agents already exist in this project."
     if [ "$MERGE" = true ]; then
       log_info "Merge mode enabled. Existing files will be preserved."
     else
@@ -155,8 +155,8 @@ install_vscode_config() {
   if [ -f "$PACKAGE_ROOT/.vscode/mcp.json" ]; then
     if [ -f "$TARGET_DIR/.vscode/mcp.json" ] && [ "$MERGE" = true ]; then
       log_warning "mcp.json already exists. Manual merge may be required."
-      cp "$PACKAGE_ROOT/.vscode/mcp.json" "$TARGET_DIR/.vscode/mcp.json.spec2cloud"
-      log_info "Saved as mcp.json.spec2cloud for manual review"
+      cp "$PACKAGE_ROOT/.vscode/mcp.json" "$TARGET_DIR/.vscode/mcp.json.spec2gcp"
+      log_info "Saved as mcp.json.spec2gcp for manual review"
     else
       cp "$PACKAGE_ROOT/.vscode/mcp.json" "$TARGET_DIR/.vscode/mcp.json"
       log_success "Installed MCP configuration"
@@ -172,8 +172,8 @@ install_devcontainer() {
     
     if [ -f "$TARGET_DIR/.devcontainer/devcontainer.json" ] && [ "$MERGE" = true ]; then
       log_warning "devcontainer.json already exists. Manual merge may be required."
-      cp "$PACKAGE_ROOT/.devcontainer/devcontainer.json" "$TARGET_DIR/.devcontainer/devcontainer.json.spec2cloud"
-      log_info "Saved as devcontainer.json.spec2cloud for manual review"
+      cp "$PACKAGE_ROOT/.devcontainer/devcontainer.json" "$TARGET_DIR/.devcontainer/devcontainer.json.spec2gcp"
+      log_info "Saved as devcontainer.json.spec2gcp for manual review"
     else
       cp "$PACKAGE_ROOT/.devcontainer/devcontainer.json" "$TARGET_DIR/.devcontainer/devcontainer.json"
       log_success "Installed dev container configuration"
@@ -215,7 +215,7 @@ create_gitkeep_files() {
 
 print_next_steps() {
   echo
-  echo -e "${GREEN}${BOLD}✨ Spec2Cloud installation complete!${NC}"
+  echo -e "${GREEN}${BOLD}✨ Spec2GCP installation complete!${NC}"
   echo
   echo -e "${BOLD}Next steps:${NC}"
   echo
@@ -227,19 +227,19 @@ print_next_steps() {
   echo "     • /frd      - Create Feature Requirements Documents"
   echo "     • /plan     - Create Technical Task Breakdown"
   echo "     • /implement - Implement features locally"
-  echo "     • /deploy   - Deploy to Azure"
+  echo "     • /deploy   - Deploy to Google Cloud"
   echo
   echo -e "   ${BLUE}Brownfield (Existing Code):${NC}"
   echo "     • /rev-eng   - Reverse engineer codebase into specs"
   echo "     • /modernize - Create modernization plan"
   echo
-  echo -e "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2cloud"
+  echo -e "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2gcp"
   echo
   
-  if [ -f "$TARGET_DIR/.vscode/mcp.json.spec2cloud" ] || [ -f "$TARGET_DIR/.devcontainer/devcontainer.json.spec2cloud" ]; then
+  if [ -f "$TARGET_DIR/.vscode/mcp.json.spec2gcp" ] || [ -f "$TARGET_DIR/.devcontainer/devcontainer.json.spec2gcp" ]; then
     echo -e "${YELLOW}⚠ Manual merge required:${NC}"
-    [ -f "$TARGET_DIR/.vscode/mcp.json.spec2cloud" ] && echo "  • .vscode/mcp.json.spec2cloud"
-    [ -f "$TARGET_DIR/.devcontainer/devcontainer.json.spec2cloud" ] && echo "  • .devcontainer/devcontainer.json.spec2cloud"
+    [ -f "$TARGET_DIR/.vscode/mcp.json.spec2gcp" ] && echo "  • .vscode/mcp.json.spec2gcp"
+    [ -f "$TARGET_DIR/.devcontainer/devcontainer.json.spec2gcp" ] && echo "  • .devcontainer/devcontainer.json.spec2gcp"
     echo
   fi
 }

@@ -1,7 +1,7 @@
 ---
 name: architect
 description: Manages project guidelines, standards, and AGENTS.md documentation for backend and frontend development.
-tools: ['edit', 'azure-mcp/search', 'vscode/getProjectSetupInfo','vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'azure-mcp/search', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'todo']
+tools: ['edit', 'vscode/getProjectSetupInfo','vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'context7/*', 'deepwiki/*', 'todo']
 model: Claude Opus 4.6 (copilot)
 handoffs:
   - label: Create ADR (/adr)
@@ -47,7 +47,7 @@ Generate comprehensive AGENTS.md files that synthesize guidelines from multiple 
 
 ### 3. Technology Research
 When making architecture decisions:
-- **Research current best practices** using context7, deepwiki, and microsoft.docs.mcp
+- **Research current best practices** using context7, deepwiki, and Google Cloud documentation
 - **Evaluate multiple options** with pros/cons for each
 - **Consider project constraints** (budget, timeline, team skills)
 - **Align with business requirements** from PRD and FRDs
@@ -57,8 +57,8 @@ When making architecture decisions:
 
 The project maintains guidelines in `/standards/`:
 - **`general/`**: Cross-cutting principles for all development
-- **`backend/`**: .NET, ASP.NET Core, and backend-specific guidelines
-- **`frontend/`**: Next.js, React, TypeScript, and frontend-specific guidelines
+- **`backend/`**: Python, FastAPI, and backend-specific guidelines
+- **`frontend/`**: React, TypeScript, and frontend-specific guidelines
 
 When working with guidelines:
 - Always read the latest content from the source files

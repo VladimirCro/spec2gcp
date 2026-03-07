@@ -1,5 +1,5 @@
-# Spec2Cloud Installation Script (PowerShell)
-# Installs spec2cloud agents, prompts, and configurations into existing projects
+# Spec2GCP Installation Script (PowerShell)
+# Installs spec2gcp agents, prompts, and configurations into existing projects
 
 param(
     [Parameter(Position=0)]
@@ -35,7 +35,7 @@ if (-not $NoColor -and $Host.UI.SupportsVirtualTerminal) {
 function Write-Header {
     Write-Host "${BLUE}${BOLD}" -NoNewline
     Write-Host "╔═══════════════════════════════════════════════════════════╗"
-    Write-Host "║                    Spec2Cloud Installer                   ║"
+    Write-Host "║                    Spec2GCP Installer                   ║"
     Write-Host "║            AI-Powered Development Workflows               ║"
     Write-Host "╚═══════════════════════════════════════════════════════════╝"
     Write-Host "${NC}"
@@ -45,7 +45,7 @@ function Write-Usage {
     @"
 Usage: install.ps1 [OPTIONS] [TARGET_DIR]
 
-Install spec2cloud into an existing project.
+Install spec2gcp into an existing project.
 
 OPTIONS:
   -Full              Install everything (agents, prompts, devcontainer, MCP)
@@ -96,7 +96,7 @@ function Log-Error {
 
 function Test-GitRepo {
     if (-not (Test-Path "$TargetDir\.git")) {
-        Log-Warning "Not a git repository. Spec2cloud works best with git."
+        Log-Warning "Not a git repository. Spec2GCP works best with git."
         $response = Read-Host "Continue anyway? (y/N)"
         if ($response -notmatch "^[Yy]$") {
             exit 1
@@ -106,7 +106,7 @@ function Test-GitRepo {
 
 function Test-ExistingInstallation {
     if ((Test-Path "$TargetDir\.github\agents") -and -not $Force) {
-        Log-Warning "Spec2cloud agents already exist in this project."
+        Log-Warning "Spec2GCP agents already exist in this project."
         if ($Merge) {
             Log-Info "Merge mode enabled. Existing files will be preserved."
         } else {
@@ -181,8 +181,8 @@ function Install-VSCodeConfig {
     if (Test-Path $mcpSource) {
         if ((Test-Path $mcpTarget) -and $Merge) {
             Log-Warning "mcp.json already exists. Manual merge may be required."
-            Copy-Item $mcpSource -Destination "$mcpTarget.spec2cloud" -Force
-            Log-Info "Saved as mcp.json.spec2cloud for manual review"
+            Copy-Item $mcpSource -Destination "$mcpTarget.spec2gcp" -Force
+            Log-Info "Saved as mcp.json.spec2gcp for manual review"
         } else {
             Copy-Item $mcpSource -Destination $mcpTarget -Force
             Log-Success "Installed MCP configuration"
@@ -204,8 +204,8 @@ function Install-DevContainer {
         
         if ((Test-Path $devcontainerTarget) -and $Merge) {
             Log-Warning "devcontainer.json already exists. Manual merge may be required."
-            Copy-Item $devcontainerSource -Destination "$devcontainerTarget.spec2cloud" -Force
-            Log-Info "Saved as devcontainer.json.spec2cloud for manual review"
+            Copy-Item $devcontainerSource -Destination "$devcontainerTarget.spec2gcp" -Force
+            Log-Info "Saved as devcontainer.json.spec2gcp for manual review"
         } else {
             Copy-Item $devcontainerSource -Destination $devcontainerTarget -Force
             Log-Success "Installed dev container configuration"
@@ -265,7 +265,7 @@ function New-GitKeepFiles {
 
 function Write-NextSteps {
     Write-Host ""
-    Write-Host "${GREEN}${BOLD}✨ Spec2Cloud installation complete!${NC}"
+    Write-Host "${GREEN}${BOLD}✨ Spec2GCP installation complete!${NC}"
     Write-Host ""
     Write-Host "${BOLD}Next steps:${NC}"
     Write-Host ""
@@ -277,21 +277,21 @@ function Write-NextSteps {
     Write-Host "     • /frd      - Create Feature Requirements Documents"
     Write-Host "     • /plan     - Create Technical Task Breakdown"
     Write-Host "     • /implement - Implement features locally"
-    Write-Host "     • /deploy   - Deploy to Azure"
+    Write-Host "     • /deploy   - Deploy to Google Cloud"
     Write-Host ""
     Write-Host "   ${BLUE}Brownfield (Existing Code):${NC}"
     Write-Host "     • /rev-eng   - Reverse engineer codebase into specs"
     Write-Host "     • /modernize - Create modernization plan"
     Write-Host ""
-    Write-Host "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2cloud"
+    Write-Host "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2gcp"
     Write-Host ""
     
     $mergeFiles = @()
-    if (Test-Path "$TargetDir\.vscode\mcp.json.spec2cloud") {
-        $mergeFiles += "  • .vscode\mcp.json.spec2cloud"
+    if (Test-Path "$TargetDir\.vscode\mcp.json.spec2gcp") {
+        $mergeFiles += "  • .vscode\mcp.json.spec2gcp"
     }
-    if (Test-Path "$TargetDir\.devcontainer\devcontainer.json.spec2cloud") {
-        $mergeFiles += "  • .devcontainer\devcontainer.json.spec2cloud"
+    if (Test-Path "$TargetDir\.devcontainer\devcontainer.json.spec2gcp") {
+        $mergeFiles += "  • .devcontainer\devcontainer.json.spec2gcp"
     }
     
     if ($mergeFiles.Count -gt 0) {

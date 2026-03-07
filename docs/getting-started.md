@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide will help you get started with Spec2Cloud.
+This guide will help you get started with Spec2GCP.
 
 ## Prerequisites
 
@@ -8,82 +8,84 @@ Before you begin, ensure you have:
 
 - Python 3.10 or higher
 - Node.js 18 or higher
-- Azure subscription (for deployment)
+- Google Cloud project (for deployment)
+- [gcloud CLI](https://cloud.google.com/sdk/docs/install) installed and authenticated
 - Git
+- VS Code with GitHub Copilot
 
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/EmeaAppGbb/spec2cloud.git
-cd spec2cloud
+git clone https://github.com/YOUR_ORG/spec2gcp.git
+cd spec2gcp
 ```
 
-### 2. Install Dependencies
+### 2. Open in Dev Container (Recommended)
 
-#### Backend Dependencies
+The easiest way to get started is using the included dev container — all tools are pre-installed:
+
+1. Open the folder in VS Code
+2. Press `F1` → **Dev Containers: Reopen in Container**
+3. Wait for the container to build (~2-3 min on first run)
+
+The container includes: Python 3.12, Node.js, gcloud CLI, Docker-in-Docker, pipx, and all MCP servers.
+
+### 3. Configure Environment Variables
+
+Set these variables in your local shell **before** opening the dev container:
 
 ```bash
-# Install .NET dependencies
-dotnet restore
+export GOOGLE_CLOUD_PROJECT="your-gcp-project-id"
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
+export GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY="your-api-key"  # optional
 ```
 
-#### Frontend Dependencies
-
-```bash
-# Install Node.js dependencies
-cd frontend
-npm install
-```
-
-### 3. Configure Environment
-
-Create a `.env` file in the root directory:
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your configuration:
+Or create a `.env` file in the root directory:
 
 ```env
-AZURE_SUBSCRIPTION_ID=your-subscription-id
-AZURE_TENANT_ID=your-tenant-id
-# Add other required environment variables
+GOOGLE_CLOUD_PROJECT=your-project-id
+GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
+GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY=your-api-key
 ```
 
-## Running Locally
+### 4. Authenticate with Google Cloud
 
-### Backend
+Inside the dev container:
 
 ```bash
-dotnet run --project src/Backend/Backend.csproj
+# Authenticate for local development
+gcloud auth login
+gcloud auth application-default login
+gcloud config set project $GOOGLE_CLOUD_PROJECT
 ```
 
-### Frontend
+## Running the Workflows
 
-```bash
-cd frontend
-npm run dev
-```
+Once inside VS Code with GitHub Copilot:
 
-### Documentation Server
+1. Open Copilot Chat (`Ctrl+Shift+I`)
+2. Type `@spec2gcp` to start the orchestrator agent
+3. Or use a workflow prompt directly (e.g., `/prd`, `/rev-eng`)
 
-To view this documentation locally:
+### Available Agents
 
-```bash
-# Install documentation dependencies
-pip install -r requirements-docs.txt
-
-# Serve the documentation
-mkdocs serve
-```
-
-The documentation will be available at `http://localhost:8000`
+| Agent | Purpose |
+|-------|---------|
+| `@spec2gcp` | Main orchestrator — routes to the right agent |
+| `@pm` | Product Manager — creates PRDs |
+| `@architect` | Solution Architect — designs the system |
+| `@planner` | Technical Planner — breaks work into tasks |
+| `@dev` | Developer — implements features |
+| `@gcloud` | GCP Specialist — deploys to Google Cloud |
+| `@devlead` | Dev Lead — reviews and coordinates |
+| `@tech-analyst` | Tech Analyst — reverse engineers codebases |
+| `@modernizer` | Modernizer — plans technical debt reduction |
+| `@extender` | Extender — plans new feature additions |
 
 ## Next Steps
 
-- Learn about the [Benefits](benefits.md) of Spec2Cloud
-- Understand the [Architecture](architecture.md)
-- Start [Contributing](contributing.md)
+- Learn about the [Benefits](benefits.md) of Spec2GCP
+- Read the full [Workflow Guide](workflows.md)
+- Check the [SPEC2GCP.md](../SPEC2GCP.md) template metadata

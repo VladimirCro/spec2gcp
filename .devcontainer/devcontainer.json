@@ -20,9 +20,6 @@
 			"version": "latest",
 			"dockerDashComposeVersion": "none"
 		},
-		"ghcr.io/devcontainers/features/dotnet:2": {
-			"version": "9.0"
-		},
 		"ghcr.io/devcontainers-extra/features/mkdocs:2": {
 			"version": "latest",
 			"plugins": "mkdocs-material pymdown-extensions mkdocstrings[crystal,python] mkdocs-monorepo-plugin mkdocs-pdf-export-plugin mkdocs-awesome-pages-plugin mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin"
@@ -33,20 +30,21 @@
 			"extensions": [
 				"GitHub.copilot-chat",
 				"GoogleCloudTools.cloudcode",
-				"hashicorp.terraform",
-				"ms-dotnettools.csdevkit"
+				"hashicorp.terraform"
 			]
 		}
 	},
 
-	// Install APM CLI after container creation
-	"postCreateCommand": "pip install --user apm-cli && apm --version",
+	// Install APM CLI and pipx (needed for analytics-mcp) after container creation
+	"postCreateCommand": "pip install --user apm-cli pipx && pipx ensurepath && apm --version",
 
 	// Pass through GitHub and GCP tokens from local environment
 	"remoteEnv": {
 		"GITHUB_COPILOT_PAT": "${localEnv:GITHUB_COPILOT_PAT}",
 		"GITHUB_APM_PAT": "${localEnv:GITHUB_APM_PAT}",
-		"GOOGLE_CLOUD_PROJECT": "${localEnv:GOOGLE_CLOUD_PROJECT}"
+		"GOOGLE_CLOUD_PROJECT": "${localEnv:GOOGLE_CLOUD_PROJECT}",
+		"GOOGLE_APPLICATION_CREDENTIALS": "${localEnv:GOOGLE_APPLICATION_CREDENTIALS}",
+		"GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY": "${localEnv:GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY}"
 	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

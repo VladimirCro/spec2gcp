@@ -340,7 +340,7 @@ Once your extension planning is complete:
 **Next Steps**:
 1. **`/plan`** - Dev Agent reviews tasks and refines technical details
 2. **`/implement`** OR **`/delegate`** - Dev Agent implements the tasks
-3. **`/deploy`** - Azure Agent deploys the extended application
+3. **`/deploy`** - GCloud Agent deploys the extended application
 
 **Quality Gates**:
 - All tests must pass (including regression)

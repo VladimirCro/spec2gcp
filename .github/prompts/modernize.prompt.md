@@ -230,7 +230,7 @@ Create `specs/modernize/strategy/devops-transformation.md`:
 - **Quality Gates**: Code coverage, security scans, performance thresholds
 
 **Infrastructure as Code**:
-- **IaC Tool**: Bicep, Terraform, Pulumi, or ARM templates
+- **IaC Tool**: Terraform or Pulumi
 - **Resource Management**: Environments, configuration, secrets
 - **State Management**: Backend storage, locking, versioning
 - **Validation**: Policy as code, cost analysis, security checks

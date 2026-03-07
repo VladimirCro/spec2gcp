@@ -24,7 +24,7 @@
 # OR Step 5b: Delegate to GitHub Copilot
 /delegate
 
-# Step 6: Deploy to Azure
+# Step 6: Deploy to Google Cloud
 /deploy
 ```
 

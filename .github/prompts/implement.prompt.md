@@ -29,16 +29,16 @@ Make a detailed plan for implementing the task, including:
 ### 3. Identify Dependencies
 Identify all libraries and frameworks needed for the implementation.
 
-### 4. Research Using Microsoft Learn MCP
-Use the Microsoft Learn MCP server to get:
+### 4. Research Using Developer Knowledge MCP
+Use the Google Developer Knowledge MCP server to get:
 - Code samples and examples
 - Best practices and patterns
 - Latest stable versions of libraries and frameworks
-- Official Microsoft documentation
+- Official Google Cloud documentation
 
 ### 5. Research Using Context7 MCP (If Needed)
-If information is not found on Microsoft Learn MCP, use the Context7 MCP server to get:
-- Code samples for non-Microsoft libraries
+If information is not found on Developer Knowledge MCP, use the Context7 MCP server to get:
+- Code samples for third-party libraries
 - Best practices and usage patterns
 - Latest versions and documentation
 

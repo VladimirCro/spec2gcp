@@ -12,10 +12,15 @@ The `.devcontainer/` folder provides a **ready-to-use development container** wi
 ## MCP Servers
 
 The `.vscode/mcp.json` configures **Model Context Protocol servers** that give agents access to:
-- **context7** - Up-to-date library documentation
-- **github** - Repository management and operations
-- **playwright** - Browser automation capabilities
-- **deepwiki** - Repository context and understanding for external repos
+- **gcloud** - Google Cloud resource management (`@google-cloud/gcloud-mcp`)
+- **observability** - Cloud Monitoring, Logging, Tracing (`@google-cloud/observability-mcp`)
+- **storage** - Cloud Storage operations (`@google-cloud/storage-mcp`)
+- **analytics** - Google Analytics data access (`analytics-mcp` via pipx)
+- **developer-knowledge** - Google Developer documentation (HTTP)
+- **context7** - Up-to-date library documentation (HTTP)
+- **github** - Repository management and operations (HTTP)
+- **playwright** - Browser automation capabilities (npx)
+- **deepwiki** - Repository context and understanding for external repos (HTTP)
 
 ## AI Agents
 
@@ -77,7 +82,7 @@ Ten specialized agents in `.github/agents/`:
 - **Instructions**: Assesses technical debt, crafts modernization strategies, develops risk management plans
 
 #### 10. **Extension Agent** (`@extender`) - Feature Extension Specialist
-- **Model**: Claude Sonnet 4.5
+- **Model**: Claude Opus 4.6
 - **Tools**: Context7, DeepWiki, edit, search
 - **Purpose**: Gathers user requirements for new features, creates FRDs, and develops extension strategies
 - **Instructions**: Creates feature specs in `specs/features/`, designs integration strategies, preserves existing stability

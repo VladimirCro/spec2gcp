@@ -1,10 +1,10 @@
-# Spec2Cloud Integration Guide
+# Spec2GCP Integration Guide
 
-This guide explains how to integrate spec2cloud into your existing projects to enable AI-powered development workflows.
+This guide explains how to integrate spec2gcp into your existing projects to enable AI-powered development workflows.
 
-## 🎯 What is Spec2Cloud?
+## 🎯 What is Spec2GCP?
 
-Spec2cloud is a collection of specialized GitHub Copilot agents and workflows that transform how you build software:
+Spec2GCP is a collection of specialized GitHub Copilot agents and workflows that transform how you build software on Google Cloud:
 
 - **Greenfield**: Turn product ideas into production-ready applications
 - **Brownfield**: Reverse engineer existing codebases into comprehensive documentation
@@ -17,13 +17,13 @@ One-line installation from GitHub releases:
 
 ```bash
 # Full installation (agents, prompts, devcontainer, MCP)
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Minimal installation (agents and prompts only)
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --minimal
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --minimal
 
 # Install to specific directory
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --target /path/to/project
 ```
 
 ### Method 2: Manual Download
@@ -32,13 +32,13 @@ Download and extract manually:
 
 ```bash
 # Download latest release
-curl -L https://github.com/EmeaAppGbb/spec2cloud/releases/latest/download/spec2cloud-full-latest.zip -o spec2cloud.zip
+curl -L https://github.com/YOUR_ORG/spec2gcp/releases/latest/download/spec2gcp-full-latest.zip -o spec2gcp.zip
 
 # Extract
-unzip spec2cloud.zip -d spec2cloud
+unzip spec2gcp.zip -d spec2gcp
 
 # Run installer
-cd spec2cloud
+cd spec2gcp
 ./scripts/install.sh --full
 
 # Or on Windows
@@ -47,10 +47,10 @@ cd spec2cloud
 
 ### Method 3: GitHub Release Download
 
-1. Visit [Releases](https://github.com/EmeaAppGbb/spec2cloud/releases)
+1. Visit [Releases](https://github.com/YOUR_ORG/spec2gcp/releases)
 2. Download the desired package:
-   - `spec2cloud-full-*.zip` - Complete package with all features
-   - `spec2cloud-minimal-*.zip` - Agents and prompts only
+   - `spec2gcp-full-*.zip` - Complete package with all features
+   - `spec2gcp-minimal-*.zip` - Agents and prompts only
 3. Extract and run the installer
 
 ## 🔧 Installation Options
@@ -108,14 +108,14 @@ your-project/
 ├── .github/
 │   ├── agents/              # 10 specialized AI agents
 │   │   ├── architect.agent.md
-│   │   ├── azure.agent.md
+│   │   ├── gcloud.agent.md
 │   │   ├── dev.agent.md
 │   │   ├── devlead.agent.md
 │   │   ├── extender.agent.md
 │   │   ├── modernizer.agent.md
 │   │   ├── planner.agent.md
 │   │   ├── pm.agent.md
-│   │   ├── spec2cloud.agent.md
+│   │   ├── spec2gcp.agent.md
 │   │   └── tech-analyst.agent.md
 │   └── prompts/             # 12 workflow prompts
 │       ├── adr.prompt.md
@@ -145,15 +145,15 @@ your-project/
 
 ### Scenario 1: New Project
 
-Starting fresh? Install spec2cloud and start building:
+Starting fresh? Install spec2gcp and start building:
 
 ```bash
 mkdir my-new-project
 cd my-new-project
 git init
 
-# Install spec2cloud
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+# Install spec2gcp
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Open in VS Code
 code .
@@ -168,8 +168,8 @@ Have existing code but no documentation? Use brownfield workflows:
 ```bash
 cd my-existing-project
 
-# Install spec2cloud
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+# Install spec2gcp
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Open in VS Code
 code .
@@ -180,17 +180,17 @@ code .
 
 ### Scenario 3: Active Project (Non-Destructive)
 
-Installing into an active project? Spec2cloud respects existing files:
+Installing into an active project? Spec2GCP respects existing files:
 
 ```bash
 cd my-active-project
 
 # Install with merge mode (default)
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash
 
 # Existing .github files preserved
 # New agents/prompts added
-# Conflicting configs saved as *.spec2cloud for manual merge
+# Conflicting configs saved as *.spec2gcp for manual merge
 ```
 
 ## ⚙️ Configuration
@@ -198,36 +198,38 @@ curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/
 ### MCP Servers
 
 If you have existing `.vscode/mcp.json`, the installer will:
-1. Save spec2cloud's MCP config as `mcp.json.spec2cloud`
+1. Save spec2gcp's MCP config as `mcp.json.spec2gcp`
 2. Allow you to manually merge configurations
 
 Example merge:
 
 ```json
 {
-  "mcpServers": {
-    // Your existing MCP servers
+  "servers": {
     "my-existing-server": {
       "command": "node",
       "args": ["server.js"]
     },
-    // Add spec2cloud MCP servers from mcp.json.spec2cloud
+    "gcloud": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/gcloud-mcp"]
+    },
+    "observability": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/observability-mcp"]
+    },
+    "storage": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/storage-mcp"]
+    },
     "context7": {
-      "command": "uvx",
-      "args": ["context7-mcp"]
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
     },
     "github": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "GITHUB_PERSONAL_ACCESS_TOKEN",
-        "mcp/github"
-      ]
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
     }
-    // ... other spec2cloud servers
   }
 }
 ```
@@ -235,25 +237,35 @@ Example merge:
 ### Dev Container
 
 If you have existing `.devcontainer/devcontainer.json`, the installer will:
-1. Save spec2cloud's config as `devcontainer.json.spec2cloud`
+1. Save spec2gcp's config as `devcontainer.json.spec2gcp`
 2. Allow you to manually merge configurations
 
 Key features to consider merging:
-- Python 3.12, Node.js, Azure CLI
+- Python 3.12, Node.js, Google Cloud CLI
 - Docker-in-Docker support
 - GitHub Copilot extensions
-- Azure and AI Toolkit extensions
+- Google Cloud Code and AI Toolkit extensions
+
+### Environment Variables
+
+The dev container expects these variables set in your local environment:
+
+```bash
+export GOOGLE_CLOUD_PROJECT="your-gcp-project-id"
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
+export GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY="your-api-key"  # optional
+```
 
 ### APM Configuration
 
 If you have existing `apm.yml`, the installer will skip creating a new one.
 
-To use spec2cloud standards:
+To use spec2gcp standards:
 
 ```yaml
 dependencies:
   apm:
-    - source: danielmeppiel/azure-standards
+    - source: EmeaAppGbb/spec2cloud-guidelines
       version: latest
   # Add your existing dependencies
 ```
@@ -264,7 +276,7 @@ apm install
 apm compile
 ```
 
-## 🚀 Using Spec2Cloud
+## 🚀 Using Spec2GCP
 
 ### Greenfield Workflows
 
@@ -288,8 +300,8 @@ For new features and projects:
 6. **`/delegate`** - Delegate to GitHub Copilot
    - Creates GitHub issues for Copilot Coding Agent
 
-7. **`/deploy`** - Deploy to Azure
-   - Generates IaC and CI/CD pipelines
+7. **`/deploy`** - Deploy to Google Cloud
+   - Generates Terraform IaC and CI/CD pipelines
 
 ### Brownfield Workflows
 
@@ -305,7 +317,7 @@ For existing codebases:
 3. **`/plan`** (Optional) - Implement Modernization
    - Executes modernization tasks
 
-4. **`/deploy`** (Optional) - Deploy to Azure
+4. **`/deploy`** (Optional) - Deploy to Google Cloud
    - Deploys modernized application
 
 ## 🔍 Troubleshooting
@@ -322,8 +334,19 @@ For existing codebases:
 **Solution**: Check MCP configuration
 1. Open `.vscode/mcp.json`
 2. Verify server configurations
-3. Check that required tools are installed (Docker, uvx, etc.)
+3. Check that required tools are installed (Node.js, npx, pipx)
 4. Restart VS Code
+
+### Issue: GCP Authentication Errors
+
+**Solution**: Set up Application Default Credentials
+```bash
+# Inside dev container
+gcloud auth application-default login
+
+# Or point to service account key
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/key.json"
+```
 
 ### Issue: Installation Script Permission Denied
 
@@ -335,11 +358,11 @@ chmod +x scripts/install.sh
 
 ### Issue: Conflicting Configuration Files
 
-**Solution**: Manually merge `.spec2cloud` files
-1. Find `*.spec2cloud` files in your project
+**Solution**: Manually merge `.spec2gcp` files
+1. Find `*.spec2gcp` files in your project
 2. Compare with your existing configurations
 3. Merge desired settings
-4. Delete `.spec2cloud` files after merging
+4. Delete `.spec2gcp` files after merging
 
 ### Issue: APM Not Found
 
@@ -384,19 +407,19 @@ code .
 # Press Ctrl+Shift+I (Windows/Linux) or Cmd+Shift+I (Mac)
 
 # 5. Type @ and verify agents appear
-# Should see: @spec2cloud, @pm, @devlead, @architect, @planner, @dev, @azure, @tech-analyst, @modernizer, @extender
+# Should see: @spec2gcp, @pm, @devlead, @architect, @planner, @dev, @gcloud, @tech-analyst, @modernizer, @extender
 
 # 6. Type / and verify prompts appear
 # Should see: /prd, /frd, /plan, /implement, /deploy, /delegate, /rev-eng, /modernize, /extend, /adr, etc.
 ```
 
-## 🔄 Updating Spec2Cloud
+## 🔄 Updating Spec2GCP
 
 To update to a newer version:
 
 ```bash
 # Re-run quick install with desired version
-curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash -s -- --version v1.1.0
+curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/scripts/quick-install.sh | bash -s -- --version v1.1.0
 
 # Or download and run installer with --force
 ./scripts/install.sh --full --force
@@ -404,7 +427,7 @@ curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/
 
 ## 🗑️ Uninstalling
 
-To remove spec2cloud:
+To remove spec2gcp:
 
 ```bash
 # Remove agents and prompts
@@ -420,8 +443,8 @@ rm .vscode/mcp.json
 rm .devcontainer/devcontainer.json
 rm apm.yml
 
-# Remove any .spec2cloud backup files
-find . -name "*.spec2cloud" -delete
+# Remove any .spec2gcp backup files
+find . -name "*.spec2gcp" -delete
 ```
 
 ## 💡 Best Practices
@@ -450,13 +473,13 @@ find . -name "*.spec2cloud" -delete
 - Commit `.github/agents` and `.github/prompts`
 - Commit `specs/` directory
 - Include `apm.yml` and `AGENTS.md`
-- Add `.spec2cloud` to `.gitignore`
+- Add `.spec2gcp` to `.gitignore`
 
 ## 📚 Additional Resources
 
 - **Main Documentation**: [README.md](README.md)
-- **Workflow Guide**: [SPEC2CLOUD.md](SPEC2CLOUD.md)
-- **GitHub Repository**: https://github.com/EmeaAppGbb/spec2cloud
+- **Workflow Guide**: [SPEC2GCP.md](SPEC2GCP.md)
+- **GitHub Repository**: https://github.com/YOUR_ORG/spec2gcp
 - **APM Documentation**: https://github.com/danielmeppiel/apm
 - **GitHub Copilot**: https://github.com/features/copilot
 
@@ -474,4 +497,4 @@ See [LICENSE.md](LICENSE.md) for details.
 
 ---
 
-**Ready to transform your development workflow?** Install spec2cloud and start building! 🚀
+**Ready to transform your development workflow?** Install spec2gcp and start building!

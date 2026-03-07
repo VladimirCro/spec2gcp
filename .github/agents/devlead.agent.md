@@ -1,7 +1,7 @@
 ---
 name: devlead
 description: Reviews PRD and FRDs for technical feasibility, completeness, and identifies missing requirements to support implementation.
-tools: ['edit', 'azure-mcp/search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'azure-mcp/search', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'todo']
+tools: ['edit', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'web/githubRepo', 'context7/*', 'deepwiki/*', 'todo']
 model: Claude Opus 4.6 (copilot)
 handoffs: 
   - label: Continue with PM

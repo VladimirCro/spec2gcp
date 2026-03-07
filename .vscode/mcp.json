@@ -18,6 +18,33 @@
     "deepwiki": {
       "type": "http",
       "url": "https://mcp.deepwiki.com/mcp"
+    },
+    "gcloud": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/gcloud-mcp"]
+    },
+    "observability": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/observability-mcp"]
+    },
+    "storage": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/storage-mcp"]
+    },
+    "analytics": {
+      "command": "pipx",
+      "args": ["run", "analytics-mcp"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${env:GOOGLE_APPLICATION_CREDENTIALS}",
+        "GOOGLE_PROJECT_ID": "${env:GOOGLE_CLOUD_PROJECT}"
+      }
+    },
+    "developer-knowledge": {
+      "type": "http",
+      "url": "https://developerknowledge.googleapis.com/mcp",
+      "headers": {
+        "X-Goog-Api-Key": "${env:GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY}"
+      }
     }
   }
 }

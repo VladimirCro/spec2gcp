@@ -100,7 +100,7 @@ graph TB
    - **Option A (`/implement`)**: Dev Agent writes code directly in `src/backend` and `src/frontend`
    - **Option B (`/delegate`)**: Dev Agent creates GitHub Issues with full task descriptions and assigns to GitHub Copilot Coding Agent
 
-6. **`/deploy`** - Azure Deployment
+6. **`/deploy`** - GCP Deployment
    - GCloud Agent analyzes the codebase
    - Generates Terraform IaC configurations
    - Creates GitHub Actions workflows for CI/CD
@@ -149,7 +149,7 @@ graph TB
    - Follows best practices and existing architectural patterns
    - Ensures comprehensive testing of both new and existing functionality
 
-5. **`/deploy`** - Azure Deployment (Optional)
+5. **`/deploy`** - GCP Deployment (Optional)
    - GCloud Agent deploys the evolved application to Google Cloud
    - Generates updated Terraform IaC configurations and CI/CD workflows
    - Uses gcloud CLI and Terraform for deployment

@@ -1,19 +1,19 @@
-# Spec2Cloud - AI-Powered Development Workflows
+# Spec2GCP - AI-Powered Development Workflows
 
-Transform any project into a spec2cloud-enabled development environment with specialized GitHub Copilot agents and workflows.
+Transform any project into a spec2gcp-enabled development environment with specialized GitHub Copilot agents and workflows.
 
 ## 🎯 What's Included
 
 This package contains:
 
 ✅ **10 Specialized AI Agents**
-- Spec2Cloud Orchestrator - Main entry point, delegates to specialized agents
+- Spec2GCP Orchestrator - Main entry point, delegates to specialized agents
 - PM Agent - Product requirements and feature planning
 - Dev Lead Agent - Technical review and feasibility assessment
 - Architect Agent - Standards, guidelines, and AGENTS.md management
 - Planner Agent - Research and multi-step planning (no implementation)
 - Dev Agent - Implementation and code generation
-- Azure Agent - Cloud deployment and infrastructure
+- GCloud Agent - Cloud deployment and infrastructure
 - Tech Analyst Agent - Reverse engineering and codebase documentation
 - Modernization Agent - Technical debt and upgrades
 - Extension Agent - New feature requirements and integration strategies
@@ -24,7 +24,7 @@ This package contains:
 - `/plan` - Create Technical Task Breakdown
 - `/implement` - Implement features locally
 - `/delegate` - Delegate to GitHub Copilot Coding Agent
-- `/deploy` - Deploy to Azure
+- `/deploy` - Deploy to Google Cloud
 - `/rev-eng` - Reverse engineer existing codebase
 - `/modernize` - Create modernization plan
 - `/extend` - Plan new feature extensions
@@ -90,7 +90,7 @@ Build new features from product ideas:
 2. /frd       → Break down into features
 3. /plan      → Create technical tasks
 4. /implement → Write the code
-5. /deploy    → Deploy to Azure
+5. /deploy    → Deploy to Google Cloud
 ```
 
 ### Brownfield (Existing Code)
@@ -101,7 +101,7 @@ Document and modernize existing codebases:
 1. /rev-eng   → Reverse engineer into documentation
 2. /modernize → (Optional) Create modernization plan
 3. /plan      → (Optional) Implement modernization
-4. /deploy    → (Optional) Deploy to Azure
+4. /deploy    → (Optional) Deploy to Google Cloud
 ```
 
 ## 📁 Directory Structure
@@ -131,19 +131,19 @@ your-project/
 Model Context Protocol servers provide enhanced capabilities:
 - **context7** - Up-to-date library documentation
 - **github** - Repository management
-- **microsoft.docs.mcp** - Microsoft/Azure docs
+- **developer-knowledge** - Google Developer Knowledge docs
 - **playwright** - Browser automation
 
-Requires: Docker, uvx, Node.js
+Requires: Node.js, npx, pipx
 
 ### Dev Container (Full Install)
 
 Pre-configured development container includes:
 - Python 3.12
 - Node.js and TypeScript
-- Azure CLI & Azure Developer CLI
+- Google Cloud CLI
 - Docker-in-Docker
-- VS Code extensions (Copilot, Azure, AI Toolkit)
+- VS Code extensions (Copilot, Google Cloud Code)
 
 ### APM - Agent Package Manager (Full Install)
 
@@ -176,8 +176,8 @@ User: "I want to add user authentication to my app"
 @dev /implement
 → Implements authentication code
 
-@azure /deploy
-→ Deploys to Azure with proper security
+@gcloud /deploy
+→ Deploys to GCP with proper security
 ```
 
 ### Example 2: Document Legacy Code
@@ -219,14 +219,14 @@ chmod +x scripts/install.sh
 ```
 
 ### Conflicting Configurations
-- Check for `*.spec2cloud` files
+- Check for `*.spec2gcp` files
 - Manually merge with your existing configs
-- Delete `.spec2cloud` files after merging
+- Delete `.spec2gcp` files after merging
 
 ## 📚 Learn More
 
 - **Integration Guide**: See `INTEGRATION.md` for detailed setup instructions
-- **GitHub Repository**: https://github.com/EmeaAppGbb/spec2cloud
+- **GitHub Repository**: https://github.com/YOUR_ORG/spec2gcp
 - **APM Documentation**: https://github.com/danielmeppiel/apm
 
 ## 🆘 Support

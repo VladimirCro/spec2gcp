@@ -9,8 +9,8 @@ license: MIT
 # Uncomment and customize based on your tech stack
 dependencies:
   apm:
-    # Core Azure and engineering standards
-    - source: danielmeppiel/azure-standards
+    # Core engineering standards
+    - source: EmeaAppGbb/spec2cloud-guidelines
       version: latest
     
     # Uncomment for Python backend projects

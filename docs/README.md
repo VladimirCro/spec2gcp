@@ -1,6 +1,6 @@
-# Spec2Cloud Documentation
+# Spec2GCP Documentation
 
-This directory contains the MkDocs-based documentation for Spec2Cloud.
+This directory contains the MkDocs-based documentation for Spec2GCP.
 
 ## Running the Documentation Server
 
@@ -52,7 +52,7 @@ This will fail if there are any warnings, helping ensure documentation quality.
 
 - `index.md` - Home page
 - `getting-started.md` - Getting started guide
-- `benefits.md` - Benefits of using Spec2Cloud
+- `benefits.md` - Benefits of using Spec2GCP
 - `architecture.md` - System architecture
 - `contributing.md` - Contribution guidelines
 

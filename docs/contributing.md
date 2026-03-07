@@ -1,6 +1,6 @@
-# Contributing to Spec2Cloud
+# Contributing to Spec2GCP
 
-Thank you for your interest in contributing to Spec2Cloud!
+Thank you for your interest in contributing to Spec2GCP!
 
 ## Development Workflow
 
@@ -14,19 +14,25 @@ Thank you for your interest in contributing to Spec2Cloud!
 
 Please refer to the `AGENTS.md` file in the root directory for detailed coding standards.
 
-### Backend (.NET)
+### Backend (Python)
 
-- Follow C# coding conventions
+- Follow PEP 8 style guidelines
 - Use async/await for I/O operations
 - Write unit tests with ≥85% coverage
-- Use dependency injection
+- Use dependency injection patterns
 
-### Frontend (Next.js/React)
+### Frontend (Node.js/TypeScript)
 
 - Use TypeScript for type safety
-- Follow React best practices
-- Use functional components and hooks
-- Write component tests
+- Follow framework best practices
+- Write component and integration tests
+
+### Infrastructure (Terraform)
+
+- Follow Terraform best practices
+- Use modules for reusable components
+- Tag all GCP resources appropriately
+- Store state in GCS backend
 
 ### Documentation
 
@@ -39,16 +45,11 @@ Please refer to the `AGENTS.md` file in the root directory for detailed coding s
 
 ### Running Tests
 
-#### Backend Tests
-
 ```bash
-dotnet test
-```
+# Python tests
+pytest
 
-#### Frontend Tests
-
-```bash
-cd frontend
+# Node.js tests
 npm test
 ```
 

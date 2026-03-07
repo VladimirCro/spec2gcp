@@ -9,7 +9,7 @@
 - **Flexible Standards** - Choose local development or delegation
 - **Composable** - Add only the standards you need (Python, React, .NET, etc.)
 - **Versioned** - Lock to specific standard versions or use latest
-- **Azure-Ready** - Automated IaC and CI/CD generation
+- **GCP-Ready** - Automated IaC and CI/CD generation
 
 ## Brownfield benefits
 
@@ -25,7 +25,7 @@
 
 - **Living Documentation** - Specs evolve with the codebase
 - **Bidirectional Workflow** - Start with idea OR start with code
-- **Specialized Agents** - PM, Dev, Dev Lead, and Azure agents with distinct roles
+- **Specialized Agents** - PM, Dev, Dev Lead, and GCloud agents with distinct roles
 - **Evidence-Based** - Brownfield never fabricates, greenfield builds intentionally
 
 Back to [docs index](index.md).

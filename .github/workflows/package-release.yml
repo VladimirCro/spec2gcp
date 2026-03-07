@@ -1,4 +1,4 @@
-name: Package Spec2Cloud Release
+name: Package Spec2GCP Release
 
 on:
   workflow_dispatch:
@@ -33,7 +33,7 @@ jobs:
       
       - name: Validate structure
         run: |
-          echo "Validating spec2cloud structure..."
+          echo "Validating spec2gcp structure..."
           
           # Check required directories
           required_dirs=(".github/agents" ".github/prompts")
@@ -66,7 +66,7 @@ jobs:
       
       - name: Build full package
         run: |
-          echo "Building full spec2cloud package..."
+          echo "Building full spec2gcp package..."
           
           # Copy agents and prompts
           mkdir -p release-full/.github/agents
@@ -109,7 +109,7 @@ jobs:
       
       - name: Build minimal package
         run: |
-          echo "Building minimal spec2cloud package..."
+          echo "Building minimal spec2gcp package..."
           
           # Copy only agents and prompts
           mkdir -p release-minimal/.github/agents
@@ -119,7 +119,7 @@ jobs:
           
           # Create minimal README
           cat > release-minimal/README.md << 'EOF'
-          # Spec2Cloud - Minimal Installation
+          # Spec2GCP - Minimal Installation
           
           This package contains only the GitHub Copilot agents and prompts.
           
@@ -140,7 +140,7 @@ jobs:
           - `/plan` - Create Technical Task Breakdown
           - `/implement` - Implement features locally
           - `/delegate` - Delegate to GitHub Copilot Coding Agent
-          - `/deploy` - Deploy to Azure
+          - `/deploy` - Deploy to Google Cloud
           - `/rev-eng` - Reverse engineer existing codebase
           - `/modernize` - Create modernization plan
           
@@ -148,7 +148,7 @@ jobs:
           
           ## Learn More
           
-          https://github.com/EmeaAppGbb/spec2cloud
+          https://github.com/EmeaAppGbb/spec2gcp
           EOF
           
           cp LICENSE.md release-minimal/
@@ -158,19 +158,19 @@ jobs:
       - name: Create ZIP archives
         run: |
           cd release-full
-          zip -r ../spec2cloud-full-${{ steps.version.outputs.VERSION }}.zip .
+          zip -r ../spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip .
           cd ..
           
           cd release-minimal
-          zip -r ../spec2cloud-minimal-${{ steps.version.outputs.VERSION }}.zip .
+          zip -r ../spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip .
           cd ..
           
           echo "✅ ZIP archives created"
       
       - name: Generate checksums
         run: |
-          sha256sum spec2cloud-full-${{ steps.version.outputs.VERSION }}.zip > checksums/spec2cloud-full-${{ steps.version.outputs.VERSION }}.sha256
-          sha256sum spec2cloud-minimal-${{ steps.version.outputs.VERSION }}.zip > checksums/spec2cloud-minimal-${{ steps.version.outputs.VERSION }}.sha256
+          sha256sum spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip > checksums/spec2gcp-full-${{ steps.version.outputs.VERSION }}.sha256
+          sha256sum spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip > checksums/spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.sha256
           
           # Create combined checksums file
           cat checksums/*.sha256 > CHECKSUMS.txt
@@ -182,40 +182,40 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
-          name: Spec2Cloud ${{ steps.version.outputs.VERSION }}
+          name: Spec2GCP ${{ steps.version.outputs.VERSION }}
           body: |
-            ## 🚀 Spec2Cloud Release ${{ steps.version.outputs.VERSION }}
+            ## 🚀 Spec2GCP Release ${{ steps.version.outputs.VERSION }}
             
-            Transform any project into a spec2cloud-enabled development environment with AI-powered workflows.
+            Transform any project into a spec2gcp-enabled development environment with AI-powered workflows.
             
             ### 📦 Installation Options
             
             **Full Installation** (Recommended)
             Includes agents, prompts, devcontainer, MCP servers, and installation scripts:
             ```bash
-            curl -L https://github.com/EmeaAppGbb/spec2cloud/releases/download/${{ steps.version.outputs.VERSION }}/spec2cloud-full-${{ steps.version.outputs.VERSION }}.zip -o spec2cloud.zip
-            unzip spec2cloud.zip -d spec2cloud
-            cd spec2cloud
+            curl -L https://github.com/EmeaAppGbb/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp.zip
+            unzip spec2gcp.zip -d spec2gcp
+            cd spec2gcp
             ./scripts/install.sh --full
             ```
             
             **Minimal Installation**
             Includes only agents and prompts:
             ```bash
-            curl -L https://github.com/EmeaAppGbb/spec2cloud/releases/download/${{ steps.version.outputs.VERSION }}/spec2cloud-minimal-${{ steps.version.outputs.VERSION }}.zip -o spec2cloud-minimal.zip
-            unzip spec2cloud-minimal.zip -d spec2cloud-minimal
-            cp -r spec2cloud-minimal/.github /path/to/your/project/
+            curl -L https://github.com/EmeaAppGbb/spec2gcp/releases/download/${{ steps.version.outputs.VERSION }}/spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip -o spec2gcp-minimal.zip
+            unzip spec2gcp-minimal.zip -d spec2gcp-minimal
+            cp -r spec2gcp-minimal/.github /path/to/your/project/
             ```
             
             **Quick Install** (One-liner)
             ```bash
-            curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2cloud/main/scripts/quick-install.sh | bash
+            curl -fsSL https://raw.githubusercontent.com/EmeaAppGbb/spec2gcp/main/scripts/quick-install.sh | bash
             ```
             
             ### 📋 What's Included
             
             **Full Package**:
-            - ✅ 10 specialized AI agents (Spec2Cloud, PM, Dev Lead, Dev, Azure, Tech Analyst, Modernizer, Extender, Planner, Architect)
+            - ✅ 10 specialized AI agents (Spec2GCP, PM, Dev Lead, Dev, GCloud, Tech Analyst, Modernizer, Extender, Planner, Architect)
             - ✅ 12 workflow prompts
             - ✅ MCP server configuration
             - ✅ Dev container setup
@@ -236,16 +236,16 @@ jobs:
             
             ### 📖 Documentation
             
-            - [Integration Guide](https://github.com/EmeaAppGbb/spec2cloud/blob/main/INTEGRATION.md)
-            - [Full Documentation](https://github.com/EmeaAppGbb/spec2cloud)
-            - [Workflow Guide](https://github.com/EmeaAppGbb/spec2cloud/blob/main/SPEC2CLOUD.md)
+            - [Integration Guide](https://github.com/EmeaAppGbb/spec2gcp/blob/main/INTEGRATION.md)
+            - [Full Documentation](https://github.com/EmeaAppGbb/spec2gcp)
+            - [Workflow Guide](https://github.com/EmeaAppGbb/spec2gcp/blob/main/SPEC2GCP.md)
             
             ### 🆕 What's New
             
-            See the [CHANGELOG](https://github.com/EmeaAppGbb/spec2cloud/blob/main/CHANGELOG.md) for details.
+            See the [CHANGELOG](https://github.com/EmeaAppGbb/spec2gcp/blob/main/CHANGELOG.md) for details.
           files: |
-            spec2cloud-full-${{ steps.version.outputs.VERSION }}.zip
-            spec2cloud-minimal-${{ steps.version.outputs.VERSION }}.zip
+            spec2gcp-full-${{ steps.version.outputs.VERSION }}.zip
+            spec2gcp-minimal-${{ steps.version.outputs.VERSION }}.zip
             CHECKSUMS.txt
           draft: false
           prerelease: false

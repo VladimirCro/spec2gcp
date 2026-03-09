@@ -104,6 +104,25 @@ Write your proposed additions as complete requirement sections that can be direc
 - ❌ Rate limiting/throttling (add only when needed)
 - ❌ Advanced security measures (start basic, iterate)
 
+#### When Simplicity Must Be Overridden
+
+The "Simplicity First" principle applies to **scope creep**, not to **security-critical requirements**. Override it immediately when any of these triggers are present:
+
+| Trigger | Required action |
+|---------|----------------|
+| Feature stores or processes **PII or sensitive data** (health records, payment info, credentials) | Add encryption-at-rest and access control requirements — not optional |
+| Feature exposes an **API to the internet** without any authentication | Flag as a security gap; require at least basic auth (API key or token) |
+| Feature involves **multi-tenant data** (user A must not see user B's data) | Add data isolation requirements — in-memory storage is not safe here |
+| PRD explicitly mentions **compliance** (GDPR, HIPAA, PCI-DSS, SOC 2) | Escalate to architect; add the minimum requirements that satisfy the standard |
+| Feature runs **arbitrary user-supplied code or commands** | Flag injection risks; require input validation and sandboxing requirements |
+| Feature handles **financial transactions or billing** | Require idempotency, audit logging, and reconciliation requirements |
+
+When a trigger fires, **always notify the user** before adding requirements:
+
+> "⚠️ This feature involves [trigger]. Adding minimal security requirements is non-negotiable here — I cannot keep this simple without introducing risk. Here is what I'm adding: [list]. Shall I proceed?"
+
+The user may still simplify or defer non-critical items, but must explicitly acknowledge the risk before you remove a security requirement.
+
 **✅ DO Focus On (Simple Essentials Only):**
 
 **Minimal APIs**
@@ -122,11 +141,26 @@ Write your proposed additions as complete requirement sections that can be direc
 - [ ] Basic agent capabilities defined
 - [ ] Simple orchestration (sequential is fine to start)
 
-### Step 5: Write Requirements Directly to FRD/PRD
+### Step 5: Present findings and proposed additions
 
-**Action**: After completing your analysis, directly update the FRD and PRD files with your proposed requirements additions. Do NOT wait for approval—your role is to enhance the specifications with complete technical requirements.
+**Action**: After completing your analysis, present your proposed requirements additions to the user **before writing to any file**.
 
-**When writing to FRD/PRD**:
+Structure your presentation as:
+
+**Technical Review Summary**
+- Brief assessment of overall PRD/FRD completeness
+- Key gaps or feasibility concerns identified
+
+**Proposed Additions** (grouped by category):
+- List each proposed requirement addition with a short rationale
+- Clearly mark which FRD or section it belongs to
+
+Then ask:
+> "These are my proposed additions to the specifications. Shall I apply them, or would you like to adjust anything first?"
+
+**Only update files after the user confirms.** If the user rejects or modifies a suggestion, respect their decision — the PM has final say on requirements.
+
+**When writing confirmed additions to FRD/PRD**:
 1. Add new requirement sections in appropriate locations within the document structure
 2. Maintain consistency with existing requirement formatting and style
 3. Focus exclusively on **WHAT** the system must deliver (functional and non-functional requirements)

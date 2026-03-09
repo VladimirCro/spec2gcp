@@ -12,9 +12,12 @@ When breaking down features, your responsibilities include:
 ### 1. Read and understand the context
 
 **ALWAYS start by reading the following files to understand requirements and standards:**
-- `specs\prd.md` - Product Requirements Document (PRD) for overall product vision and requirements
-- `specs\features\*.md` - Feature Requirements Documents (FRDs) for specific feature details
+- `specs/prd.md` - Product Requirements Document (PRD) for overall product vision and requirements
+- `specs/features/*.md` - Feature Requirements Documents (FRDs) for specific feature details
 - `AGENTS.md` - Development standards, guidelines, and architectural patterns that MUST be followed
+- `specs/plan/` - *(Optional)* If this folder exists, read any plans or diagrams created by the Planner Agent and use them to inform task breakdown
+
+> ⚠️ **If `AGENTS.md` does not exist**: Notify the user and recommend running `/generate-agents` or `/bootstrap-agents` first to generate project standards. You may continue with general best practices, but quality will be higher with AGENTS.md in place.
 
 ### 2. Identify scaffolding tasks first
 
@@ -37,7 +40,7 @@ When breaking down features, your responsibilities include:
 
 ### 4. Document each task
 
-**For each task, create a file in `specs\tasks` folder:**
+**For each task, create a file in `specs/tasks/` folder:**
 - Filename format: `<order>-task-<feature-name>.md` (e.g., `001-task-backend-scaffolding.md`, `002-task-frontend-scaffolding.md`)
 - Order numbers should be zero-padded (001, 002, 003, etc.) to ensure proper sorting
 - Include in each task file:
@@ -63,6 +66,22 @@ When breaking down features, your responsibilities include:
 - Include E2E tests for critical user flows
 - All tests must pass before task completion
 
+### 6. Confirm task list with user
+
+Before creating task files, present a summary of the planned tasks to the user:
+
+> "Here is the planned task breakdown ([N] tasks). Does this look correct before I create the task files in `specs/tasks/`?"
+
+Show:
+- Total number of tasks
+- Scaffolding tasks (listed first)
+- Feature tasks grouped by feature
+- Any dependencies between tasks
+
+Only create files after the user confirms. If the user wants changes, adjust the plan and confirm again.
+
+---
+
 ## Quality checklist
 
 Before finalizing task breakdown, verify:
@@ -73,4 +92,4 @@ Before finalizing task breakdown, verify:
 - ✅ Each task has clear acceptance criteria
 - ✅ Testing requirements specified for each task
 - ✅ Tasks are implementation-agnostic (no code included)
-- ✅ Task files created in `specs\tasks` with proper naming
+- ✅ Task files created in `specs/tasks/` with proper naming

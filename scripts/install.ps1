@@ -283,7 +283,7 @@ function Write-NextSteps {
     Write-Host "     • /rev-eng   - Reverse engineer codebase into specs"
     Write-Host "     • /modernize - Create modernization plan"
     Write-Host ""
-    Write-Host "3. ${BOLD}Learn more:${NC} https://github.com/EmeaAppGbb/spec2gcp"
+    Write-Host "3. ${BOLD}Learn more:${NC} https://github.com/VladimirCro/spec2gcp"
     Write-Host ""
     
     $mergeFiles = @()

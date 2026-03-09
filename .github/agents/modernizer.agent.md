@@ -1,8 +1,17 @@
 ---
 name: modernizer
 description: Analyzes legacy systems and creates comprehensive modernization strategies, identifying technical debt, security vulnerabilities, and architectural improvements to transform applications into well-architected, modern solutions.
-tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'vscode/extensions', 'todo', 'execute/runTests', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', github/search_repositories, ]
+tools: ['execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'vscode/extensions', 'todo', 'execute/runTests', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', 'github/search_repositories']
 model: Claude Opus 4.6 (copilot)
+handoffs:
+  - label: Implement Modernization Tasks (/plan)
+    agent: dev
+    prompt: file:.github/prompts/plan.prompt.md
+    send: false
+  - label: Deploy to GCP (/deploy)
+    agent: gcloud
+    prompt: file:.github/prompts/deploy.prompt.md
+    send: false
 ---
 # Modernization Strategy Agent Instructions
 

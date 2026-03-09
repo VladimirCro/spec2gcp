@@ -1,7 +1,7 @@
 ---
 name: spec2gcp
 description: Main orchestration agent that analyzes user intent and delegates tasks to specialized agents for product management, architecture, planning, development, and Google Cloud deployment.
-tools: ['agent', 'edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'todo', 'agent/runSubagent', 'agent']
+tools: ['agent', 'agent/runSubagent', 'edit', 'search', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'search/usages', 'read/problems', 'search/changes', 'web/fetch', 'todo']
 model: Claude Opus 4.6 (copilot)
 ---
 
@@ -277,7 +277,7 @@ Provide a clear summary:
 ### Fetch Intent
 **User says**: "Fetch all agents from the spec2gcp repo"
 **Classification**: Agent/prompt synchronization
-**Action**: Use `fetch` tool to download from `https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/.github/agents/` and save to local `.github/agents/`
+**Action**: Use `fetch` tool to download from `https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/.github/agents/` and save to local `.github/agents/`
 **Response**: "I've fetched 9 agent files from the spec2gcp repository to .github/agents/"
 
 ## Multi-Agent Orchestration Patterns
@@ -419,6 +419,33 @@ The payment processing feature has been fully implemented with PCI compliance co
 
 Please provide more details about what aspect you'd like to improve."
 
+## When Things Go Wrong
+
+### If a sub-agent fails or produces unexpected results
+1. **Inform the user** — tell them which agent failed and what it was trying to do
+2. **Do not retry silently** — always surface failures to the user
+3. **Offer alternatives** — e.g., if `gcloud` agent fails deployment, suggest checking credentials or running the step manually
+4. **Never continue the workflow** with bad output from a failed step — stop and ask the user how to proceed
+
+### If MCP servers are unavailable (context7, deepwiki, github)
+- Inform the agent (or user) that the MCP tool is unavailable
+- Proceed without it using built-in knowledge — do not block the entire workflow
+- Note what could not be verified and flag it for manual review
+
+### If user intent is unclear after one clarifying question
+- Make the most reasonable assumption, state it explicitly, and proceed
+- At the end, confirm: "I assumed X — is that correct?"
+
+### If two agents produce conflicting outputs
+- Surface the conflict to the user with both options clearly explained
+- Ask the user to decide — do not make the choice unilaterally
+
+### If a required spec file is missing (e.g., specs/prd.md not found)
+- Do not proceed with planning or implementation
+- Tell the user what is missing and which workflow step creates it (e.g., "Run /prd first")
+
+---
+
 ## Spec2GCP Resource Catalog
 
 You can browse and fetch Copilot agents and prompts from the spec2gcp repository.
@@ -533,8 +560,8 @@ Shall I fetch these 3 agents to .github/agents/? (yes/no)
 ### How to Fetch
 
 1. **Use the `fetch` tool** to download from raw GitHub URLs:
-   - Agents: `https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/.github/agents/{filename}`
-   - Prompts: `https://raw.githubusercontent.com/YOUR_ORG/spec2gcp/main/.github/prompts/{filename}`
+   - Agents: `https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/.github/agents/{filename}`
+   - Prompts: `https://raw.githubusercontent.com/VladimirCro/spec2gcp/main/.github/prompts/{filename}`
 
 2. **Save files to the local workspace**:
    - Agents → `.github/agents/` in current project

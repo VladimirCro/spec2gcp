@@ -34,21 +34,34 @@ The container includes: Python 3.12, Node.js, gcloud CLI, Docker-in-Docker, pipx
 
 ### 3. Configure Environment Variables
 
-Set these variables in your local shell **before** opening the dev container:
+The dev container reads environment variables from your **local shell** — set them before opening the container. Add these to your `~/.bashrc`, `~/.zshrc`, or equivalent:
 
 ```bash
-export GOOGLE_CLOUD_PROJECT="your-gcp-project-id"
+# Required: GitHub tokens
+export GITHUB_COPILOT_PAT="ghp_..."        # GitHub PAT with Copilot access
+export GITHUB_APM_PAT="ghp_..."            # GitHub PAT for APM package manager
+
+# Required: Google Cloud
+export GOOGLE_CLOUD_PROJECT="my-project-id"  # Your GCP project ID
+
+# Optional: for local gcloud auth via service account
 export GOOGLE_APPLICATION_CREDENTIALS="/path/to/service-account.json"
-export GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY="your-api-key"  # optional
+
+# Optional: Google Developer Knowledge MCP
+export GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY="AIza..."
 ```
 
-Or create a `.env` file in the root directory:
+**How to get each value:**
 
-```env
-GOOGLE_CLOUD_PROJECT=your-project-id
-GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json
-GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY=your-api-key
-```
+| Variable | Where to get it |
+|----------|----------------|
+| `GITHUB_COPILOT_PAT` | GitHub → Settings → Developer settings → Personal access tokens → New token. Scopes: `repo`, `copilot` |
+| `GITHUB_APM_PAT` | Same as above, or reuse the same token. Scope: `read:packages` |
+| `GOOGLE_CLOUD_PROJECT` | Run `gcloud projects list` or find it in [GCP Console](https://console.cloud.google.com) |
+| `GOOGLE_APPLICATION_CREDENTIALS` | Create a service account in GCP IAM, download the JSON key. For local dev, `gcloud auth application-default login` is simpler (no file needed) |
+| `GOOGLE_DEVELOPER_KNOWLEDGE_API_KEY` | [Google Cloud Console → APIs → Developer Knowledge API](https://console.cloud.google.com) — only needed for the developer-knowledge MCP server |
+
+> **Note**: The dev container uses `localEnv` to read from your host shell — a `.env` file in the repo root will NOT be picked up automatically by the container.
 
 ### 4. Authenticate with Google Cloud
 
@@ -83,6 +96,35 @@ Once inside VS Code with GitHub Copilot:
 | `@tech-analyst` | Tech Analyst — reverse engineers codebases |
 | `@modernizer` | Modernizer — plans technical debt reduction |
 | `@extender` | Extender — plans new feature additions |
+
+## Required GCP IAM Roles
+
+The service account used by GitHub Actions (or your local credentials) needs these IAM roles to deploy with Spec2GCP workflows:
+
+| Role | Purpose |
+|------|---------|
+| `roles/run.admin` | Deploy and manage Cloud Run services |
+| `roles/iam.serviceAccountUser` | Allow Cloud Run to use a runtime service account |
+| `roles/artifactregistry.writer` | Push container images to Artifact Registry |
+| `roles/secretmanager.secretAccessor` | Read secrets at deploy time |
+| `roles/storage.admin` | Manage Cloud Storage buckets (Terraform state, static assets) |
+| `roles/iam.workloadIdentityUser` | Authenticate via Workload Identity Federation |
+| `roles/serviceusage.serviceUsageConsumer` | Enable and use GCP APIs |
+| `roles/cloudbuild.builds.editor` | Trigger Cloud Build jobs (if using Cloud Build) |
+
+Grant the minimum set of roles needed for your deployment. For a basic Cloud Run deployment, `run.admin` + `iam.serviceAccountUser` + `artifactregistry.writer` is usually sufficient.
+
+```bash
+# Grant roles to the GitHub Actions service account
+SA_EMAIL="github-actions-sa@YOUR_PROJECT_ID.iam.gserviceaccount.com"
+PROJECT="YOUR_PROJECT_ID"
+
+for ROLE in roles/run.admin roles/iam.serviceAccountUser roles/artifactregistry.writer roles/secretmanager.secretAccessor; do
+  gcloud projects add-iam-policy-binding $PROJECT \
+    --member="serviceAccount:$SA_EMAIL" \
+    --role=$ROLE
+done
+```
 
 ## Next Steps
 

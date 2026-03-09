@@ -10,7 +10,7 @@ license: MIT
 dependencies:
   apm:
     # Core engineering standards
-    - source: EmeaAppGbb/spec2cloud-guidelines
+    - source: VladimirCro/spec2gcp-guidelines
       version: latest
     
     # Uncomment for Python backend projects

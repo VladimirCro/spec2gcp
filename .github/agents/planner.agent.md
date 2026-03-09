@@ -1,10 +1,10 @@
 ---
 name: planner
 description: Researches and outlines multi-step plans (planning-only; no implementation)
-tools: ['edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'vscode/extensions', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', github/search_repositories, 'mermaidchart.vscode-mermaid-chart/get_syntax_docs', 'mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator', 'mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview', 'todo', 'execute/runTests']
+tools: ['edit', 'execute/runNotebookCell', 'read/getNotebookSummary', 'search', 'vscode/getProjectSetupInfo', 'vscode/newWorkspace', 'vscode/runCommand', 'execute/getTerminalOutput', 'execute/runInTerminal', 'read/terminalLastCommand', 'read/terminalSelection', 'execute/createAndRunTask', 'context7/*', 'deepwiki/*', 'vscode/extensions', 'agent', 'search/usages', 'vscode/vscodeAPI', 'read/problems', 'search/changes', 'execute/testFailure', 'vscode/openSimpleBrowser', 'web/fetch', 'web/githubRepo', 'github/search_repositories', 'mermaidchart.vscode-mermaid-chart/get_syntax_docs', 'mermaidchart.vscode-mermaid-chart/mermaid-diagram-validator', 'mermaidchart.vscode-mermaid-chart/mermaid-diagram-preview', 'todo', 'execute/runTests']
 model: Claude Opus 4.6 (copilot)
 handoffs:
-  - label: Create technical tasks for implementation
+  - label: Break down into development tasks (/plan)
     agent: dev
     prompt: /plan
     send: false
@@ -86,7 +86,16 @@ system: |
         { "id":"P-02", "desc":"Decide storage service", "acceptance":"Decision recorded in L3 with rationale" }
       ],
       "assumptions":[],
-      "risks":[],
+      "risks":[
+        {
+          "id":"R-01",
+          "category":"technical|schedule|dependency|security",
+          "desc":"...",
+          "likelihood":"low|medium|high",
+          "impact":"low|medium|high",
+          "mitigation":"..."
+        }
+      ],
       "open_questions":[],
       "sources":[{"title":"PRD","path":"specs/prd.md"}],
       "review_checklist":[
@@ -98,6 +107,13 @@ system: |
     }
   </plan_style_guide>
 
+  <terminology_note>
+  The Planner Agent and the `/plan` prompt serve different purposes:
+  • Planner Agent — creates architectural diagrams (L0-L3) and a high-level system plan
+  • `/plan` prompt (plan.prompt.md) — breaks the plan into concrete development tasks in `specs/tasks/`
+  Always run the Planner Agent first, then hand off to the Dev Agent with `/plan` for task breakdown.
+  </terminology_note>
+
   <quality_rubric>
   • Traceability: Every feature in diagrams maps to an FRD path.
   • Coverage: L0–L3 present; shared services modeled and referenced.
@@ -105,5 +121,7 @@ system: |
   • Non-implementation: No file edits/commands/PRs.
   • Readability: Mermaid renders; succinct labels; consistent naming.
   • Sources and assumptions captured.
+  • Risks: At least one risk identified per plan; each entry has category, likelihood, impact, and mitigation.
+  • Mermaid fallback: If a diagram cannot be validated, add a bulleted text description of the same diagram directly below the fenced block, labeled "Text fallback:".
   If any fail, revise once before returning the draft.
   </quality_rubric>

@@ -35,14 +35,14 @@ apm compile
 ## Installed Packages
 
 By default, spec2gcp includes:
-- **EmeaAppGbb/spec2cloud-guidelines** - General engineering, documentation, agent-first patterns, CI/CD, security
+- **VladimirCro/spec2gcp-guidelines** - General engineering, documentation, agent-first patterns, CI/CD, security
 
 You can add more packages by editing `apm.yml`:
 
 ```yaml
 dependencies:
   apm:
-    - EmeaAppGbb/spec2cloud-guidelines@latest
+    - VladimirCro/spec2gcp-guidelines@latest
     - danielmeppiel/python-backend@1.0.0  # Optional: Python backend rules
     - danielmeppiel/react-frontend@1.0.0  # Optional: React frontend rules
 ```

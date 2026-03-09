@@ -8,7 +8,7 @@ Delegate implementation to GitHub Copilot by creating well-structured GitHub iss
 ## Steps
 
 ### 1. Read Task Specification
-Read the complete task file from `specs\tasks` to understand:
+Read the complete task file from `specs/tasks/` to understand:
 - Task description and requirements
 - Dependencies on other tasks
 - Acceptance criteria
@@ -29,6 +29,9 @@ Use the GitHub MCP server to create an issue with:
 - Detailed acceptance criteria
 - Testing requirements (≥85% coverage)
 - Any architectural constraints or patterns to follow
+- **Branch name to use**: `feature/<task-name>` (e.g., `feature/user-authentication`)
+- **Commit convention**: Use Conventional Commits format (e.g., `feat: add user authentication endpoint`)
+- **PR target branch**: `main`
 
 **Labels:** Add appropriate labels:
 - `feature`, `bug`, `enhancement`, etc.
@@ -37,7 +40,7 @@ Use the GitHub MCP server to create an issue with:
 
 ### 3. Update Task File
 Once the issue is created:
-- Update the task file in `specs\tasks` with the GitHub issue link
+- Update the task file in `specs/tasks/` with the GitHub issue link
 - Add the issue number at the top of the file
 
 ### 4. Assign to GitHub Copilot

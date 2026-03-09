@@ -34,31 +34,32 @@
 # You have an existing codebase with minimal or outdated documentation
 "I inherited a marketing campaign management app built in Python/React"
 
-# Step 1: Reverse engineer technical tasks from code
-/plan-brown
-# Agent analyzes codebase (Python FastAPI backend, React frontend)
-# Creates specs/tasks/ with honest documentation of what exists
-# Notes: "Task 008: Email service - stub only, not fully implemented"
+# Step 1: Reverse engineer and document the existing codebase
+/rev-eng
+# @tech-analyst analyzes the codebase (Python FastAPI backend, React frontend)
+# Creates specs/features/ with honest documentation of what exists
+# Creates specs/docs/ with architecture, stack, security, API documentation
+# Notes gaps: "Email service - stub only, not fully implemented"
 
-# Step 2: Synthesize feature requirements from tasks
-/frd-brown
-# Agent groups tasks into product features
-# Creates specs/features/campaign-management.md, user-authentication.md, etc.
-# Notes: "Email notifications feature - partially implemented"
+# Step 2a: Improve existing code quality (choose ONE path)
+/modernize
+# @modernizer creates modernization strategy in specs/modernize/
+# Identifies technical debt, security issues, outdated dependencies
+# Creates actionable tasks in specs/tasks/
 
-# Step 3: Create product vision from features
-/prd-brown
-# Agent synthesizes overall product purpose
-# Creates specs/prd.md with goals, scope, user stories
-# Includes "Product Status Assessment" with gaps and recommendations
+# OR Step 2b: Add new features to the existing system
+/extend
+# @extender gathers requirements from you for new capabilities
+# Creates FRDs in specs/features/ for new features
+# Creates extension strategy and tasks in specs/tasks/
 
-# Result: Complete documentation traceability
-# PRD → FRDs → Tasks → Code (with file paths)
+# Step 3: Break down and implement tasks
+/plan   # @dev reviews tasks and confirms breakdown
+/implement  # OR /delegate to GitHub Copilot
 
-# Optional: Now enhance using greenfield workflow
-/frd  # Add new features to existing FRDs
-/plan # Create tasks for new features
-/implement # Build the enhancements
+# Step 4: Deploy evolved application to Google Cloud
+/deploy
+# @gcloud generates updated Terraform + CI/CD and deploys
 ```
 
 Back to [docs index](index.md).

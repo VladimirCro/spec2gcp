@@ -59,6 +59,25 @@ Analyze the codebase and deploy it to Google Cloud Platform with best practices,
 - Document environment variables and Secret Manager secrets
 - Add runbook for common operations (redeploy, rollback, scaling)
 
+## If Deployment Fails
+
+**Terraform errors:**
+- Run `terraform plan` first and review the output before `terraform apply`
+- On failure, run `terraform destroy` only for newly created resources — never for existing ones
+- Check GCP API enablement: missing APIs are the most common cause of Terraform failures
+
+**Cloud Run deployment errors:**
+- Check image build logs: `gcloud builds list --limit=5`
+- Check service logs: `gcloud run services logs read <SERVICE_NAME>`
+- Roll back to previous revision: `gcloud run services update-traffic <SERVICE_NAME> --to-revisions=PREVIOUS=100`
+
+**GitHub Actions / Workload Identity errors:**
+- Verify the WIF pool and provider are correctly configured
+- Verify the service account has the correct IAM bindings
+- Check that `GOOGLE_CLOUD_PROJECT` and `WIF_PROVIDER` secrets are set in the repository
+
+**General rule:** If something fails, do not retry blindly — read the error output, surface it to the user, and propose a fix before proceeding.
+
 ## Tools to Use
 
 Priority order:

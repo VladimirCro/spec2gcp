@@ -16,9 +16,23 @@ dependencies:
 
 # Workflow shortcuts - run with: apm run <script-name>
 scripts:
+  # Greenfield workflows
   prd: "copilot --allow-tool -p .github/prompts/prd.prompt.md"
   frd: "copilot --allow-tool -p .github/prompts/frd.prompt.md"
   plan: "copilot --allow-tool -p .github/prompts/plan.prompt.md"
   implement: "copilot --allow-tool -p .github/prompts/implement.prompt.md"
   delegate: "copilot --allow-tool -p .github/prompts/delegate.prompt.md"
   deploy: "copilot --allow-tool -p .github/prompts/deploy.prompt.md"
+
+  # Brownfield workflows
+  rev-eng: "copilot --allow-tool -p .github/prompts/rev-eng.prompt.md"
+  modernize: "copilot --allow-tool -p .github/prompts/modernize.prompt.md"
+  extend: "copilot --allow-tool -p .github/prompts/extend.prompt.md"
+
+  # Architecture & standards
+  adr: "copilot --allow-tool -p .github/prompts/adr.prompt.md"
+  generate-agents: "copilot --allow-tool -p .github/prompts/generate-agents.prompt.md"
+  bootstrap-agents: "copilot --allow-tool -p .github/prompts/bootstrap-agents.prompt.md"
+
+  # Standards management
+  compile: "apm compile"

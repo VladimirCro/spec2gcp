@@ -13,60 +13,69 @@ When implementing code, your responsibilities include:
 
 Follow these steps in order when implementing a task:
 
-### 1. Gather Requirements Context
-Read all relevant context to understand the full scope:
-- PRD found in `specs\prd.md`
-- Relevant feature specifications in `specs\features`
-- Task specifications in `specs\tasks`
+### 1. Create a feature branch
 
-### 2. Create Implementation Plan
+Before writing any code, create a git branch for this task:
+```bash
+git checkout -b feature/<task-name>
+# e.g.: git checkout -b feature/user-authentication
+```
+Branch naming convention: `feature/`, `fix/`, or `chore/` followed by kebab-case task name.
+
+### 2. Gather Requirements Context
+Read all relevant context to understand the full scope:
+- PRD found in `specs/prd.md`
+- Relevant feature specifications in `specs/features/`
+- Task specifications in `specs/tasks/`
+
+### 3. Create Implementation Plan
 Make a detailed plan for implementing the task, including:
 - Components or modules to be created/modified
 - Data models and contracts
 - API endpoints or interfaces
 - Testing strategy
 
-### 3. Identify Dependencies
+### 4. Identify Dependencies
 Identify all libraries and frameworks needed for the implementation.
 
-### 4. Research Using Developer Knowledge MCP
+### 5. Research Using Developer Knowledge MCP
 Use the Google Developer Knowledge MCP server to get:
 - Code samples and examples
 - Best practices and patterns
 - Latest stable versions of libraries and frameworks
 - Official Google Cloud documentation
 
-### 5. Research Using Context7 MCP (If Needed)
+### 6. Research Using Context7 MCP (If Needed)
 If information is not found on Developer Knowledge MCP, use the Context7 MCP server to get:
 - Code samples for third-party libraries
 - Best practices and usage patterns
 - Latest versions and documentation
 
-### 6. Implement the Code
+### 7. Implement the Code
 Write the implementation code following:
 - Team coding standards (see `AGENTS.md`)
 - Architectural patterns defined in the project
 - Type-safety requirements
 - Modular, self-contained design principles
 
-### 7. Write Unit Tests
+### 8. Write Unit Tests
 Create unit tests to verify the implementation:
 - Test all public methods and functions
 - Test edge cases and error conditions
 - Aim for ≥85% code coverage
 
-### 8. Run Unit Tests
+### 9. Run Unit Tests
 Execute the unit tests to verify correctness:
 - Run tests using the appropriate test runner
 - Review test output and failures
 
-### 12. Fix and Iterate on All Tests
+### 10. Fix and Iterate on All Tests
 Loop until all tests pass:
 - Address test failures
 - Refine implementation
 - Ensure quality gates are met
 
-### 13. Document Implementation Notes (if needed)
+### 11. Document Implementation Notes (if needed)
 If you encountered implementation details worth documenting:
 - Document minor technical decisions in code comments
 - Update relevant documentation in `/docs`
@@ -79,7 +88,7 @@ If you encountered implementation details worth documenting:
 - Wait for ADR creation and standards update before proceeding
 - This ensures architectural decisions are made deliberately with proper evaluation
 
-### 14. Verify UI Integration (Frontend Tasks Only)
+### 12. Verify UI Integration (Frontend Tasks Only)
 If implementing frontend features, verify system integration:
 - [ ] **Navigation**: Is this page/feature linked in global navigation?
   - If navigation doesn't exist, note that a navigation task is needed
@@ -93,7 +102,7 @@ If implementing frontend features, verify system integration:
 - [ ] **Authentication Flow**: Does login/logout work from this page?
 - [ ] **Consistent UX**: Does this page match design patterns of other pages?
 
-### 15. Update Documentation
+### 13. Update Documentation
 Write or update documentation following guidelines in `AGENTS.md`:
 - Update existing docs in `/docs` directory (do NOT create separate summaries)
 - Use MkDocs format (Markdown)
@@ -117,3 +126,7 @@ Before marking a task complete, verify:
   - Uses consistent layout wrapper
   - No dead-ends or orphaned pages
   - Authentication flow works correctly
+- ✅ **Git**:
+  - All changes committed with descriptive Conventional Commit message (e.g., `feat: add user authentication endpoint`)
+  - Branch is up to date with main (`git pull origin main`)
+  - Pull Request created targeting `main` with: task description, link to FRD, test evidence, and checklist

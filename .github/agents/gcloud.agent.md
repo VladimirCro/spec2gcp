@@ -61,6 +61,67 @@ You are an expert Google Cloud Platform (GCP) architect. Your role is to analyze
 - **Enable audit logging** for all resources
 - **Implement least-privilege access** with IAM roles and conditions
 
+#### Workload Identity Federation Quick Setup
+
+Run these commands once per GCP project to enable keyless GitHub Actions authentication:
+
+```bash
+# 1. Set variables
+export PROJECT_ID="your-gcp-project-id"
+export PROJECT_NUMBER=$(gcloud projects describe $PROJECT_ID --format="value(projectNumber)")
+export GITHUB_ORG="your-github-org"
+export GITHUB_REPO="your-repo-name"
+export POOL_ID="github-actions-pool"
+export PROVIDER_ID="github-actions-provider"
+export SA_NAME="github-actions-sa"
+
+# 2. Enable required APIs
+gcloud services enable iamcredentials.googleapis.com \
+  cloudresourcemanager.googleapis.com \
+  sts.googleapis.com \
+  --project=$PROJECT_ID
+
+# 3. Create Workload Identity Pool
+gcloud iam workload-identity-pools create $POOL_ID \
+  --project=$PROJECT_ID \
+  --location="global" \
+  --display-name="GitHub Actions Pool"
+
+# 4. Create OIDC provider
+gcloud iam workload-identity-pools providers create-oidc $PROVIDER_ID \
+  --project=$PROJECT_ID \
+  --location="global" \
+  --workload-identity-pool=$POOL_ID \
+  --display-name="GitHub Actions Provider" \
+  --attribute-mapping="google.subject=assertion.sub,attribute.actor=assertion.actor,attribute.repository=assertion.repository" \
+  --issuer-uri="https://token.actions.githubusercontent.com"
+
+# 5. Create service account
+gcloud iam service-accounts create $SA_NAME \
+  --project=$PROJECT_ID \
+  --display-name="GitHub Actions Service Account"
+
+# 6. Bind the service account to the pool (restrict to your repo)
+gcloud iam service-accounts add-iam-policy-binding \
+  "$SA_NAME@$PROJECT_ID.iam.gserviceaccount.com" \
+  --project=$PROJECT_ID \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="principalSet://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/attribute.repository/$GITHUB_ORG/$GITHUB_REPO"
+
+# 7. Print values to add as GitHub Actions secrets
+echo "WORKLOAD_IDENTITY_PROVIDER: projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/$POOL_ID/providers/$PROVIDER_ID"
+echo "SERVICE_ACCOUNT: $SA_NAME@$PROJECT_ID.iam.gserviceaccount.com"
+```
+
+Add the two printed values as GitHub repository secrets, then reference them in your workflow:
+
+```yaml
+- uses: google-github-actions/auth@v2
+  with:
+    workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+    service_account: ${{ secrets.SERVICE_ACCOUNT }}
+```
+
 ## Deployment Workflow
 
 ### Step 1: Pre-Deployment Analysis

@@ -5,7 +5,7 @@
 - **Zero Setup** - Dev container has everything preconfigured
 - **Structured Process** - Clear workflow from idea to production
 - **AI-Powered** - Specialized agents handle different aspects
-- **Best Practices** - Built-in architedtural guidance via `AGENTS.md`
+- **Best Practices** - Built-in architectural guidance via `AGENTS.md`
 - **Flexible Standards** - Choose local development or delegation
 - **Composable** - Add only the standards you need (Python, React, .NET, etc.)
 - **Versioned** - Lock to specific standard versions or use latest

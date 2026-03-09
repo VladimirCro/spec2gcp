@@ -88,6 +88,21 @@ Hand off specific tasks to GitHub Copilot for implementation:
 - Specify acceptance criteria
 - Review and validate delegated work
 
+## When to use `/plan` vs `/implement`
+
+Use this guide to decide which workflow to invoke:
+
+| Signal | Use `/plan` first | Use `/implement` directly |
+|--------|-------------------|--------------------------|
+| **Scope** | Multiple features or cross-cutting concerns | Single, well-scoped task |
+| **Dependencies** | Tasks depend on each other or on other teams | Self-contained change with no blockers |
+| **Clarity** | Requirements are ambiguous or high-level | Task file in `specs/tasks/` is already complete |
+| **Parallelism** | Work will be split across team members or delegated | You are implementing the task yourself |
+| **Risk** | Touches auth, data model, or public API surface | Internal refactor or additive feature |
+| **Continuity** | Starting fresh on a feature | Picking up from an existing task breakdown |
+
+**Shortcut rule**: If a `specs/tasks/` file for your task already exists and is unambiguous → go straight to `/implement`. If it doesn't exist or feels incomplete → run `/plan` first.
+
 ## Important Notes
 
 - **Consume, don't create** - Follow AGENTS.md and standards; don't modify them

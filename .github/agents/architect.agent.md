@@ -60,6 +60,39 @@ The project maintains guidelines in `/standards/`:
 - **`backend/`**: Python, FastAPI, and backend-specific guidelines
 - **`frontend/`**: React, TypeScript, and frontend-specific guidelines
 
+### Expected `/standards/` folder structure
+
+```
+/standards/
+├── general/
+│   ├── engineering.md          # Core engineering principles, CI/CD, quality gates
+│   ├── security.md             # Security & compliance requirements
+│   ├── observability.md        # Logging, tracing, metrics standards
+│   └── documentation.md        # Documentation and ADR conventions
+├── backend/
+│   ├── python.md               # Python coding conventions, linting, formatting
+│   ├── api-design.md           # REST API design, OpenAPI standards
+│   ├── database.md             # Firestore/Cloud SQL schema and access patterns
+│   └── testing.md              # Backend test strategy, coverage requirements
+└── frontend/
+    ├── react.md                # React/TypeScript component conventions
+    ├── state-management.md     # State management patterns
+    ├── styling.md              # CSS/Tailwind conventions, design tokens
+    └── testing.md              # Frontend test strategy, E2E testing
+```
+
+**Naming conventions for standards files:**
+- Use kebab-case filenames: `api-design.md`, `state-management.md`
+- One concern per file — do not combine unrelated topics
+- Cross-reference between files with relative links rather than duplicating content
+
+**When creating new standards files:**
+1. Place under the appropriate subdirectory (`general/`, `backend/`, `frontend/`)
+2. Open with a brief purpose statement (one sentence)
+3. Use `##` headers for major sections, `###` for subsections
+4. Include a concrete example for every rule you define
+5. After adding or updating files, run `/generate-agents` to regenerate `AGENTS.md`
+
 When working with guidelines:
 - Always read the latest content from the source files
 - Preserve technical accuracy of specifications and requirements

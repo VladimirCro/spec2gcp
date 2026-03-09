@@ -53,7 +53,7 @@ Also, your job is to help break down the PRD into smaller FRDs that a dev lead c
 - **Ensure alignment** between business objectives and user needs
 
 ### File Locations (CRITICAL)
-- **PRD**: Always create in `specs/prd.md`q
+- **PRD**: Always create in `specs/prd.md`
 - **FRDs**: Always create in `specs/features/*.md` (one file per feature)
 - **Naming**: Use descriptive kebab-case names (e.g., `user-authentication.md`, `booking-calendar.md`)
 

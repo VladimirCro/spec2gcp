@@ -1,4 +1,7 @@
 
+# Environment variables (never commit secrets)
+.env
+
 # APM dependencies (auto-generated, do not commit)
 apm_modules/
 **/AGENTS.md
